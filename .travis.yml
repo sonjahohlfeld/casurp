@@ -10,3 +10,5 @@ python:
   - "nightly" # currently points to 3.6-dev
 # command to run tests
 script: python -m unittest discover
+notifications:
+  slack: cctb-team:qMyD2lj8s8m0X3nZvKFZzSoY
