@@ -7,9 +7,16 @@
  */
 
 namespace App\Controller;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-
-class StartpageController
+class StartpageController extends Controller
 {
-
+    /**
+     * @Route("/")
+     *
+     */
+    public function displayStartPage(){
+        return $this->render('/base.html.twig');
+    }
 }

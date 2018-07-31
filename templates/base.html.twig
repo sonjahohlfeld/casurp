@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}Carsup{% endblock %}</title>
+    {% block stylesheets %}
+        {# Global styles bundled with webpack #}
+        <link rel="stylesheet" href="{{ asset('build/app.css') }}" />
+    {% endblock %}
+    {% block head %}{% endblock %}
+</head>
+<body>
+{% block javascripts %}
+    {# Global dependencies bundled with webpack #}
+    <script src="{{ asset('build/app.js') }}"></script>
+{% endblock %}
+{% block body %}{% endblock %}
+</body>
+</html>
