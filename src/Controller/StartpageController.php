@@ -17,6 +17,6 @@ class StartpageController extends Controller
      *
      */
     public function displayStartPage(){
-        return $this->render('/base.html.twig');
+        return $this->render('/login.html.twig');
     }
 }

@@ -6,10 +6,11 @@
     {% block stylesheets %}
         {# Global styles bundled with webpack #}
         <link rel="stylesheet" href="{{ asset('build/app.css') }}" />
+        <link rel="stylesheet" href="../node_modules/startbootstrap-sb-admin/css/sb-admin.min.css" />
     {% endblock %}
     {% block head %}{% endblock %}
 </head>
-<body>
+<body class="bg-dark">
 {% block javascripts %}
     {# Global dependencies bundled with webpack #}
     <script src="{{ asset('build/app.js') }}"></script>

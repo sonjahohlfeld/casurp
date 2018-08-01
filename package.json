@@ -9,5 +9,8 @@
     "popper": "^1.0.1",
     "sass-loader": "^7.0.3",
     "webpack-notifier": "^1.6.0"
+  },
+  "dependencies": {
+    "startbootstrap-sb-admin": "^5.0.1"
   }
 }

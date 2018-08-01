@@ -1,4 +1,5 @@
 var Encore = require('@symfony/webpack-encore');
+require('./node_modules/startbootstrap-sb-admin/css');
 
 Encore
 // the project directory where all compiled assets will be stored
