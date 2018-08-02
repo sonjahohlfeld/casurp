@@ -1,0 +1,22 @@
+version: '3'
+services:
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_USER: carsup
+      MYSQL_PASSWORD: carsup
+      MYSQL_DATABASE: carsup
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+    - "80:80"
+    depends_on:
+    - db
+    volumes:
+    - "../..:/carsup"
+    working_dir: /carsup
+    restart: unless-stopped
+    command: bash -c "bash /carsup/docker/carsup/init_dev.sh -d && php /carsup/bin/console server:run"
