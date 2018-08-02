@@ -1,5 +1,4 @@
 var Encore = require('@symfony/webpack-encore');
-require('./node_modules/startbootstrap-sb-admin/css');
 
 Encore
 // the project directory where all compiled assets will be stored
@@ -8,8 +7,8 @@ Encore
     // the public path used by the web server to access the previous directory
     .setPublicPath('/build')
 
-    // will create public/build/app.js and public/build/app.css
-    .addEntry('app', './assets/js/app.js')
+    // will create public/build/app.js and public/build/app.scss
+    .addEntry('base', ['./assets/scss/base.scss'])
 
     // allow legacy applications to use $/jQuery as a global variable
     .autoProvidejQuery()
@@ -23,7 +22,7 @@ Encore
     // show OS notifications when builds finish/fail
     .enableBuildNotifications()
 
-// create hashed filenames (e.g. app.abc123.css)
+// create hashed filenames (e.g. app.abc123.scss)
 // .enableVersioning()
 
 // allow sass/scss files to be processed
