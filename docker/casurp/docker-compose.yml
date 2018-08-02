@@ -7,12 +7,15 @@ services:
       MYSQL_USER: carsup
       MYSQL_PASSWORD: carsup
       MYSQL_DATABASE: carsup
+    ports:
+     - "3141:3306"
+
   web:
     build:
       context: .
       dockerfile: Dockerfile
     ports:
-    - "80:80"
+    - "8000:80"
     depends_on:
     - db
     volumes:

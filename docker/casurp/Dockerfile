@@ -26,7 +26,7 @@ RUN cd /carsup; composer install --no-interaction
 RUN cd /carsup; yarn install --non-interactive
 RUN cd /carsup; ./node_modules/.bin/encore dev
 
-RUN rm -rf /var/www/html && ln -fs /carsup/public /var/www/html
+RUN rm -rf /var/www/html && ln -fs /carsup/public/build /var/www/html
 RUN chown -R www-data:www-data /carsup/var
 
 RUN echo "export LC_ALL=C.UTF-8" >>/etc/apache2/envvars
