@@ -3,7 +3,7 @@
 /app/config/parameters_test.yml
 /app/config/databases_test.yml
 /app/Resources/views/misc/custom_contact.html.twig
-/build/
+public/build/
 /phpunit.xml
 /var/*
 !/var/cache
@@ -27,3 +27,4 @@ util/.iucn_token
 docker/docker-compose-dev.yml
 docker/fennec/docker-compose-dev.local.yml
 .docker.initialized
+yarn.lock
