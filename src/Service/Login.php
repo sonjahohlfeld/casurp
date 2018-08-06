@@ -6,7 +6,20 @@
  * Time: 15:06
  */
 
+namespace App\Service;
+
+use App\Entity\Permission;
+
 class Login
 {
 
+    private $em;
+
+    public function __construct(\Doctrine\ORM\EntityManagerInterface $entityManager){
+        $this->em = $entityManager;
+    }
+
+    public function execute($username){
+        return $this->em->getRepository(Permission::class)->findPermissionByUsername($username);
+    }
 }

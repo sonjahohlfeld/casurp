@@ -36,15 +36,13 @@ class PermissionRepository extends ServiceEntityRepository
     }
     */
 
-    /*
-    public function findOneBySomeField($value): ?Permission
+    public function findPermissionByUsername($username): ?Permission
     {
         return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
+            ->andWhere('p.username = :val')
+            ->setParameter('val', $username)
             ->getQuery()
             ->getOneOrNullResult()
         ;
     }
-    */
 }
