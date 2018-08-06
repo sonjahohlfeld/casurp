@@ -2,7 +2,7 @@
 
 export HOME=/tmp
 COMPOSER_CACHE_DIR=/tmp
-cd /carsup
+cd /casurp
 composer -n install
 yarn --non-interactive install
 ./node_modules/.bin/encore dev

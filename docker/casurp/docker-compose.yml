@@ -4,9 +4,9 @@ services:
     image: mysql:5.7
     environment:
       MYSQL_ROOT_PASSWORD: password
-      MYSQL_USER: carsup
-      MYSQL_PASSWORD: carsup
-      MYSQL_DATABASE: carsup
+      MYSQL_USER: casurp
+      MYSQL_PASSWORD: casurp
+      MYSQL_DATABASE: casurp
     ports:
      - "3141:3306"
 
@@ -19,7 +19,7 @@ services:
     depends_on:
     - db
     volumes:
-    - "../..:/carsup"
-    working_dir: /carsup
+    - "../..:/casurp"
+    working_dir: /casurp
     restart: unless-stopped
-    command: bash -c "bash /carsup/docker/carsup/init_dev.sh -d && php /carsup/bin/console server:run"
+    command: bash -c "bash /casurp/docker/casurp/init_dev.sh -d && php /casurp/bin/console server:run"

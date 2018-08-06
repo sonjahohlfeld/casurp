@@ -19,15 +19,15 @@ RUN apt-get update \
 RUN a2enmod rewrite
 RUN pecl install xdebug-2.5.0 \
     && docker-php-ext-enable xdebug
-RUN git clone --branch ${BRANCH} --recursive https://github.com/sonjahohlfeld/coffee /carsup
+RUN git clone --branch ${BRANCH} --recursive https://github.com/sonjahohlfeld/casurp.git /casurp
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-RUN cd /carsup; composer install --no-interaction
-RUN cd /carsup; yarn install --non-interactive
-RUN cd /carsup; ./node_modules/.bin/encore dev
+RUN cd /casurp; composer install --no-interaction
+RUN cd /casurp; yarn install --non-interactive
+RUN cd /casurp; ./node_modules/.bin/encore dev
 
-RUN rm -rf /var/www/html && ln -fs /carsup/public/build /var/www/html
-RUN chown -R www-data:www-data /carsup/var
+RUN rm -rf /var/www/html && ln -fs /casurp/public/build /var/www/html
+RUN chown -R www-data:www-data /casurp/var
 
 RUN echo "export LC_ALL=C.UTF-8" >>/etc/apache2/envvars
 RUN echo "export LANG=C.UTF-8" >>/etc/apache2/envvars
