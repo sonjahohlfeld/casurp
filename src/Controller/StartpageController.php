@@ -20,6 +20,7 @@ class StartpageController extends Controller
      *
      */
     public function indexAction(){
+        phpinfo();
         return $this->render('/login.html.twig');
     }
 
