@@ -10,6 +10,8 @@ Encore
     // will create public/build/app.js and public/build/app.scss
     .addEntry('base', ['./assets/scss/base.scss'])
 
+    .addEntry('app', ['./assets/jsx/base.jsx'])
+
     // allow legacy applications to use $/jQuery as a global variable
     .autoProvidejQuery()
 
@@ -27,6 +29,8 @@ Encore
 
 // allow sass/scss files to be processed
     .enableSassLoader()
+
+    .enableReactPreset()
 ;
 
 // export the final configuration
