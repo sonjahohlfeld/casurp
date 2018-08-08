@@ -29,8 +29,7 @@ class StartpageController extends Controller
      * @Route("/login", name="login")
      */
     public function loginAction(Request $request, Login $login){
-//        $username = $request->query->get('username');
-        $username = 'admin';
+        $username = $request->query->get('username');
         $result = $login->execute($username);
         $message = $result != null ? "Successfully logged in." : "Could not logged in.";
         $twigParameter = array(
