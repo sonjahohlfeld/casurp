@@ -60,5 +60,24 @@ $('document').ready(function(){
         ykeys: ['a', 'b'],
         labels: ['Series A', 'Series B']
     });
+
+    let coffeeData = [
+        {
+            'name': 'Testi Testmann',
+            'expenses': '2,00 €',
+            'paid': '5,00 €',
+            'credit': '+3,00 €'
+        }
+    ]
+
+    $('#coffeelist-table').DataTable({
+        data: coffeeData,
+        columns: [
+            {data: 'name'},
+            {data: 'expenses'},
+            {data: 'paid'},
+            {data: 'credit'},
+        ],
+    })
 })
 
