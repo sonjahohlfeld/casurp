@@ -37,4 +37,12 @@ class StartpageController extends Controller
         );
         return $this->render('/main.html.twig', $twigParameter);
     }
+
+    /**
+     * @Route("/main", name="main")
+     */
+    public function mainAction(){
+        return $this->render('/main.html.twig');
+    }
+
 }
