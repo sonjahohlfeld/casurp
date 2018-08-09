@@ -1,10 +1,15 @@
 const $ = require('jquery');
 // create global $ and jQuery variables
 global.$ = global.jQuery = $;
+global.Raphael = global.Raphael = Raphael;
+
+import Raphael from 'raphael';
+import 'morris.js/morris.css';
+import 'morris.js/morris.js';
 
 require('bootstrap-sass');
 require('bootstrap-select');
-require('bootstrap/dist/js/bootstrap.min')
+require('bootstrap/dist/js/bootstrap.min.js')
 require('startbootstrap-sb-admin-2/dist/js/sb-admin-2.js');
 require('metismenu/dist/metisMenu.js');
 
@@ -16,9 +21,11 @@ require('datatables.net-bs');
 require('datatables.net-buttons-bs');
 require('datatables.net-buttons/js/buttons.colVis');
 
-require('jquery/dist/jquery.min');
-require('jquery-ui-dist/jquery-ui');
-require('plotly.js/dist/plotly.min');
+require('jquery/dist/jquery.min.js');
+require('jquery-ui-dist/jquery-ui.min.js');
+require('plotly.js/dist/plotly.min.js');
+require('morris-js-module/morris.js');
+require('raphael/raphael.js');
 
 $('document').ready(function(){
     $('#loginButton').on('click', function() {
@@ -37,5 +44,21 @@ $('document').ready(function(){
             }
         })
     })
+
+    Morris.Bar({
+        element: 'morris-bar-chart',
+        data: [
+            { y: '2006', a: 100, b: 90 },
+            { y: '2007', a: 75,  b: 65 },
+            { y: '2008', a: 50,  b: 40 },
+            { y: '2009', a: 75,  b: 65 },
+            { y: '2010', a: 50,  b: 40 },
+            { y: '2011', a: 75,  b: 65 },
+            { y: '2012', a: 100, b: 90 }
+        ],
+        xkey: 'y',
+        ykeys: ['a', 'b'],
+        labels: ['Series A', 'Series B']
+    });
 })
 
