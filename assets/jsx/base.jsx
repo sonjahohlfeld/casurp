@@ -16,7 +16,7 @@ require('metismenu/dist/metisMenu.js');
 // require('bootstrap-confirmation2/src/confirmation.js');
 
 require('datatables.net');
-require('datatables.net-bs');
+require('datatables.net-buttons');
 
 require('datatables.net-buttons-bs');
 require('datatables.net-buttons/js/buttons.colVis');
@@ -26,6 +26,8 @@ require('jquery-ui-dist/jquery-ui.min.js');
 require('plotly.js/dist/plotly.min.js');
 require('morris-js-module/morris.js');
 require('raphael/raphael.js');
+require('pdfmake/build/pdfmake.min.js')
+require('pdfmake/build/vfs_fonts.js')
 
 $('document').ready(function(){
     $('#loginButton').on('click', function() {
@@ -66,11 +68,12 @@ $('document').ready(function(){
             'name': 'Testi Testmann',
             'expenses': '2,00 €',
             'paid': '5,00 €',
-            'credit': '+3,00 €'
+            'credit': '+ 3,00 €'
         }
     ]
 
     $('#coffeelist-table').DataTable({
+        dom: 'Bfrtip',
         data: coffeeData,
         columns: [
             {data: 'name'},
@@ -78,6 +81,9 @@ $('document').ready(function(){
             {data: 'paid'},
             {data: 'credit'},
         ],
+        buttons: [
+            'pdf'
+        ]
     })
 })
 
