@@ -26,6 +26,16 @@ class Product
      */
     private $price;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $count;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $unit;
+
     public function getId()
     {
         return $this->id;
@@ -51,6 +61,30 @@ class Product
     public function setPrice(float $price): self
     {
         $this->price = $price;
+
+        return $this;
+    }
+
+    public function getCount(): ?int
+    {
+        return $this->count;
+    }
+
+    public function setCount(int $count): self
+    {
+        $this->count = $count;
+
+        return $this;
+    }
+
+    public function getUnit(): ?string
+    {
+        return $this->unit;
+    }
+
+    public function setUnit(string $unit): self
+    {
+        $this->unit = $unit;
 
         return $this;
     }

@@ -20,6 +20,6 @@ class Login
     }
 
     public function execute($username){
-        return $this->em->getRepository(Permission::class)->findPermissionByUsername($username);
+        return $username;
     }
 }
