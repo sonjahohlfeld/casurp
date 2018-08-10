@@ -28,6 +28,7 @@ require('morris-js-module/morris.js');
 require('raphael/raphael.js');
 require('pdfmake/build/pdfmake.min.js')
 require('pdfmake/build/vfs_fonts.js')
+require('jszip/dist/jszip.min.js')
 
 $('document').ready(function(){
     $('#loginButton').on('click', function() {
@@ -82,7 +83,7 @@ $('document').ready(function(){
             {data: 'credit'},
         ],
         buttons: [
-            'pdf'
+            'pdfHtml5', 'csvHtml5', 'excelHtml5'
         ]
     })
 })
