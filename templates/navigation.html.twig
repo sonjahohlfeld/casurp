@@ -17,13 +17,12 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.html"><i class="fa fa-coffee"></i> Casurp</a>
+            <a class="navbar-brand" href="{{ path('main') }}"><i class="fa fa-coffee"></i> Casurp</a>
         </div>
-        <!-- /.navbar-header -->
 
         <ul class="nav navbar-nav navbar-top-links navbar-right">
             <li><a href="#">Users</a></li>
-            <li><a href="#">Products</a></li>
+            <li><a href="{{ path('products') }}">Products</a></li>
             <li class="dropdown">
                 <a class="dropdown-toggle navbar-custom navbar-icon-custom" data-toggle="dropdown" href="#" style="background-color: transparent;">
                     <i class="fa fa-user fa-fw"></i>
@@ -35,7 +34,6 @@
                     <li><hr></li>
                     <li><a href="#"><i class="fa fa-sign-out fa-fw"></i> Logout</a></li>
                 </ul>
-                <!-- /.dropdown-user -->
             </li>
         </ul>
     </nav>
