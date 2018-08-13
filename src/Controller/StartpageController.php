@@ -26,7 +26,6 @@ class StartpageController extends Controller
     /**
      * @param Request $request
      * @return Response
-     * @Route("/login", name="login")
      */
     public function loginAction(Request $request, Login $login){
         $username = $request->query->get('username');
