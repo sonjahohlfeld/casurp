@@ -9,7 +9,15 @@
 namespace App\Controller;
 
 
-class Product
-{
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Routing\Annotation\Route;
 
+class Product extends Controller
+{
+    /**
+     * @Route("/products")
+     */
+    public function displayProductsAction(){
+        return $this->render("product.html.twig");
+    }
 }

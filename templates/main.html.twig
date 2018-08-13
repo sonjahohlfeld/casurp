@@ -1,41 +1,6 @@
-{% extends 'base.html.twig' %}
+{% extends 'navigation.html.twig' %}
 
-{% block body %}
-
-<div id="wrapper">
-
-    <!-- Navigation -->
-    <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="index.html"><i class="fa fa-coffee"></i> Casurp</a>
-        </div>
-        <!-- /.navbar-header -->
-
-        <ul class="nav navbar-nav navbar-top-links navbar-right">
-            <li><a href="#">Users</a></li>
-            <li><a href="#">Products</a></li>
-            <li class="dropdown">
-                <a class="dropdown-toggle navbar-custom navbar-icon-custom" data-toggle="dropdown" href="#" style="background-color: transparent;">
-                    <i class="fa fa-user fa-fw"></i>
-                        Testi Testmann
-                    <i class="fa fa-caret-down"></i>
-                </a>
-                <ul class="dropdown-menu dropdown-user">
-                        <li><a>Signed in as<br><b>Testi Testmann</b></a></li>
-                        <li><hr></li>
-                        <li><a href="#"><i class="fa fa-sign-out fa-fw"></i> Logout</a></li>
-                </ul>
-                <!-- /.dropdown-user -->
-            </li>
-        </ul>
-    </nav>
-
+{% block content %}
     <div id="page-wrapper" style="margin: 0px; border: none;">
         <div class="row">
             <div class="col-lg-12">
