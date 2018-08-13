@@ -1,0 +1,137 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<div id="wrapper">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html"><i class="fa fa-coffee"></i> Casurp</a>
+        </div>
+        <!-- /.navbar-header -->
+
+        <ul class="nav navbar-nav navbar-top-links navbar-right">
+            <li><a href="#">Users</a></li>
+            <li><a href="#">Products</a></li>
+            <li class="dropdown">
+                <a class="dropdown-toggle navbar-custom navbar-icon-custom" data-toggle="dropdown" href="#" style="background-color: transparent;">
+                    <i class="fa fa-user fa-fw"></i>
+                        Testi Testmann
+                    <i class="fa fa-caret-down"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-user">
+                        <li><a>Signed in as<br><b>Testi Testmann</b></a></li>
+                        <li><hr></li>
+                        <li><a href="#"><i class="fa fa-sign-out fa-fw"></i> Logout</a></li>
+                </ul>
+                <!-- /.dropdown-user -->
+            </li>
+        </ul>
+    </nav>
+
+    <div id="page-wrapper" style="margin: 0px; border: none;">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Overview</h1>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <div class="row">
+            <div class="col-lg-3 col-md-6">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <div>Cash Position</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="huge">123,00 €</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <div>Milk</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="huge">12 Packs</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <div>Beans</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="huge">3 Bags</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <div>Sugar</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="huge">2 Packs</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-10">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <i class="fa fa-list fa-fw"></i> Coffee List
+                    </div>
+                    <!-- /.panel-heading -->
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <div class="table-responsive">
+                                    <table id="coffeelist-table" class="table table-bordered table-hover table-striped">
+                                        <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Expenses</th>
+                                            <th>Paid</th>
+                                            <th>Credit</th>
+                                        </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div id="morris-bar-chart"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

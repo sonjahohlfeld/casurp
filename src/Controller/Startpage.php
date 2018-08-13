@@ -20,21 +20,7 @@ class StartpageController extends Controller
      *
      */
     public function indexAction(){
-        return $this->render('/login.html.twig');
-    }
-
-    /**
-     * @param Request $request
-     * @return Response
-     */
-    public function loginAction(Request $request, Login $login){
-        $username = $request->query->get('username');
-        $result = $login->execute($username);
-        $message = $result != null ? "Successfully logged in." : "Could not logged in.";
-        $twigParameter = array(
-            'message' => $message
-        );
-        return $this->render('/main.html.twig', $twigParameter);
+        return $this->render('/index.html.twig');
     }
 
     /**
