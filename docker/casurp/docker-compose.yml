@@ -1,25 +1,26 @@
 version: '3'
 services:
-  db:
-    image: mysql:5.7
+  database:
+    image: postgres:9.6
+    volumes:
+    - "../volumes/database:/var/lib/postgresql/data"
     environment:
-      MYSQL_ROOT_PASSWORD: password
-      MYSQL_USER: casurp
-      MYSQL_PASSWORD: casurp
-      MYSQL_DATABASE: casurp
-    ports:
-     - "3141:3306"
-
+      POSTGRES_USER: casurp
+      POSTGRES_PASSWORD: casurp
+      POSTGRES_DB: casurp
   web:
     build:
       context: .
       dockerfile: Dockerfile
+    user: $UID
+    tty: true
     ports:
-    - "8000:80"
+    - "8889:80"
+    - "3141:8000"
     depends_on:
-    - db
+    - database
     volumes:
     - "../..:/casurp"
     working_dir: /casurp
     restart: unless-stopped
-    command: bash -c "bash /casurp/docker/casurp/init_dev.sh -d && php /casurp/bin/console server:run"
+    command: bash -c "bash /casurp/docker/casurp/init_dev.sh -d && php /casurp/bin/console server:run 0.0.0.0:8000"
