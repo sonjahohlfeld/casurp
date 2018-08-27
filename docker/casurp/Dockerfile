@@ -5,15 +5,13 @@ MAINTAINER Sonja Hohlfeld <development@sonja-hohlfeld.de>
 RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
 RUN echo "deb http://dl.yarnpkg.com/debian/ stable main" > /etc/apt/sources.list.d/yarn.list
 RUN curl -sL https://deb.nodesource.com/setup_8.x | bash -
+COPY php.ini /usr/local/etc/php/
 
 RUN apt-get update \
-&& apt-get install -yq nodejs git libpq-dev unzip vim libdbd-pg-perl liblog-log4perl-perl yarn jq cron  \
-&& apt-get install libldap2-dev -y net-tools\
+&& apt-get install -yq nodejs git postgresql-client libpq-dev unzip vim libdbd-pg-perl liblog-log4perl-perl yarn jq cron\
 && rm -rf /var/lib/apt/lists/* \
-&& docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu/ \
-&&  docker-php-ext-install ldap \
-&&  docker-php-ext-install sockets \
-&& docker-php-ext-install pdo pdo_mysql zip \
+&& docker-php-ext-install pdo pdo_pgsql zip \
+&& a2enmod rewrite \
 && docker-php-source delete
 
 RUN a2enmod rewrite
@@ -32,4 +30,3 @@ RUN chown -R www-data:www-data /casurp/var
 
 RUN echo "export LC_ALL=C.UTF-8" >>/etc/apache2/envvars
 RUN echo "export LANG=C.UTF-8" >>/etc/apache2/envvars
-
