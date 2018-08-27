@@ -15,7 +15,19 @@ In addition,
  For running the web interface you have to execute the follwoing commands
  
 ``git clone https://github.com/sonjahohlfeld/casurp.git``
-``cd casurp/docker/casurp`` 
+
+``cd casurp/docker/casurp``
+
 ``docker-compose up -d``
 
 Then you can browse to [http://localhost:8080](http://localhost:8080)
+
+## Setup the database
+
+Type the following command in order to create the database schema and import the default database.
+
+``cd casurp/``
+
+``php bin/console doctrine:schema:create`` 
+
+````

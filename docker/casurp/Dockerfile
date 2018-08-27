@@ -14,10 +14,6 @@ RUN apt-get update \
 && a2enmod rewrite \
 && docker-php-source delete
 
-RUN a2enmod rewrite
-RUN pecl install xdebug-2.5.0 \
-    && docker-php-ext-enable xdebug
-
 RUN git clone --branch ${BRANCH} --recursive https://github.com/sonjahohlfeld/casurp.git /casurp
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
