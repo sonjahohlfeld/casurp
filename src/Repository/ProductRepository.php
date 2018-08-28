@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Product;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\DBAL\Query\QueryBuilder;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
@@ -22,14 +23,14 @@ class ProductRepository extends ServiceEntityRepository
 //    /**
 //     * @return Product[] Returns an array of Product objects
 //     */
-    public function findByName($value)
-    {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.name = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getResult()
-        ;
+    public function findByProductName($value){
+        $qb = $this->getEntityManager()->createQueryBuilder();
+        $qb->select('p.id', 'p.name','p.price', 'p.count','p.unit')
+            ->from('App\Entity\Product','p')
+            ->where('p.name = :value')
+            ->setParameter('value', $value);
+        $query = $qb->getQuery();
+        return $query->getResult();
     }
 
     /*

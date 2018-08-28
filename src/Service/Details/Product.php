@@ -18,6 +18,6 @@ class Product
     }
 
     public function getDetailsOfProduct($product){
-        return $this->em->getRepository(\App\Entity\Product::class)->findByName($product);
+        return $this->em->getRepository(\App\Entity\Product::class)->findByProductName($product);
     }
 }

@@ -23,11 +23,10 @@ class Product extends Controller
      * @return Response
      */
     public function getCountOfMilk(\App\Service\Details\Product $product){
-        $name = "Snix";
-        $result = $product->getDetailsOfProduct($name);
+        $result = $product->getDetailsOfProduct("Milk");
         $response = new Response();
         $response->setContent(json_encode(array(
-            'data' => $result,
+            'data' => $result
         )));
         $response->headers->set('Content-Type', 'application/json');
         return $response;
