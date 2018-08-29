@@ -26,7 +26,7 @@ class Product extends Controller
         $result = $product->getDetailsOfProduct("Milk");
         $response = new Response();
         $response->setContent(json_encode(array(
-            'data' => $result
+            'count' => $result[0]['count']
         )));
         $response->headers->set('Content-Type', 'application/json');
         return $response;
