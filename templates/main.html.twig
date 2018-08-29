@@ -23,48 +23,30 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="row">
+            {% for p in data.products %}
             <div class="col-lg-3 col-md-6">
+                {% if p.count <= 1 %}
+                <div class="panel panel-danger">
+                {% elseif p.count <= 5 %}
+                <div class="panel panel-warning">
+                    {% else %}
                 <div class="panel panel-primary">
+                {% endif %}
                     <div class="panel-heading">
                         <div class="row">
                             <div class="col-xs-3">
-                                <div>Milk</div>
+                                <div>{{  p.name }}</div>
                             </div>
                         </div>
                     </div>
                     <div class="panel-body">
-                        <div class="huge">12 Packs</div>
+                        <div class="huge">{{ p.count }} {{  p.unit }}</div>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <div class="row">
-                            <div class="col-xs-3">
-                                <div>Beans</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="panel-body">
-                        <div class="huge">3 Bags</div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <div class="row">
-                            <div class="col-xs-3">
-                                <div>Sugar</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="panel-body">
-                        <div class="huge">2 Packs</div>
-                    </div>
-                </div>
-            </div>
+            {% endfor %}
         </div>
         <div class="row">
             <div class="col-lg-10">

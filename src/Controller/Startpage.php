@@ -7,6 +7,7 @@
  */
 
 namespace App\Controller;
+use App\Service\Listing\Overview;
 use App\Service\Login;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -26,8 +27,12 @@ class Startpage extends Controller
     /**
      * @Route("/main", name="main")
      */
-    public function mainAction(){
-        return $this->render('/main.html.twig');
+    public function mainAction(Overview $overview){
+        $data = $overview->execute();
+        $twigParameter = array(
+            "data" => $data
+        );
+        return $this->render('/main.html.twig', $twigParameter);
     }
 
 }
