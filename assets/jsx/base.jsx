@@ -6,6 +6,8 @@ global.Raphael = global.Raphael = Raphael;
 import Raphael from 'raphael';
 import 'morris.js/morris.css';
 import 'morris.js/morris.js';
+require('jquery/dist/jquery.min.js');
+require('jquery-ui-dist/jquery-ui.min.js');
 
 require('bootstrap-sass');
 require('bootstrap-select');
@@ -21,8 +23,6 @@ require('datatables.net-buttons');
 require('datatables.net-buttons-bs');
 require('datatables.net-buttons/js/buttons.colVis');
 
-require('jquery/dist/jquery.min.js');
-require('jquery-ui-dist/jquery-ui.min.js');
 require('plotly.js/dist/plotly.min.js');
 require('morris-js-module/morris.js');
 require('raphael/raphael.js');

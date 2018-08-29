@@ -1,6 +1,9 @@
 $('document').ready(function(){
-    $('#removeProductButton').on('click', function(){
-        var productName = $('#productName').val()
-        console.log(productName)
+    $('#removeProductButton-Sugar').on('click', function(){
+        console.log("test")
+    })
+
+    $('#createNewProduct').on('click', function(){
+        $('#exampleModal').modal()
     })
 })
