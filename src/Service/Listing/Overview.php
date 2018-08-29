@@ -9,6 +9,7 @@
 namespace App\Service\Listing;
 
 
+use App\Entity\Cash;
 use Doctrine\ORM\EntityManagerInterface;
 
 class Overview
@@ -21,7 +22,8 @@ class Overview
 
     public function execute(){
         return [
-            "products" => $this->em->getRepository(\App\Entity\Product::class)->findAll()
+            "products" => $this->em->getRepository(\App\Entity\Product::class)->findAll(),
+            "cash" => $this->em->getRepository(Cash::class)->findAll()
         ];
     }
 }
