@@ -12,6 +12,8 @@ Encore
 
     .addEntry('app', ['./assets/jsx/base.jsx'])
 
+    .addEntry('products', ['./assets/jsx/products.jsx'])
+
     // allow legacy applications to use $/jQuery as a global variable
     .autoProvidejQuery()
 
