@@ -10,8 +10,6 @@ require('jquery/dist/jquery.min.js');
 require('jquery-ui-dist/jquery-ui.min.js');
 
 require('bootstrap-sass');
-require('bootstrap-select');
-require('bootstrap/dist/js/bootstrap.min.js')
 require('startbootstrap-sb-admin-2/dist/js/sb-admin-2.js');
 require('metismenu/dist/metisMenu.js');
 
