@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Service\Edit\CreateProduct;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -45,6 +46,26 @@ class Product extends Controller
         $response = new Response();
         $response->setContent(json_encode(array(
             'count' => $result
+        )));
+        $response->headers->set('Content-Type', 'application/json');
+        return $response;
+    }
+
+    /**
+     * @param Request $request
+     * @param CreateProduct $createProduct
+     * @return Response
+     * @Route("/products/create", name="create_product")
+     */
+    public function createNewProduct(Request $request, CreateProduct $createProduct){
+        $productName = $request->query->get('productName');
+        $productCount = $request->query->get('productCount');
+        $productPrice = $request->query->get('productPrice');
+        $productUnit = $request->query->get('productUnit');
+        $result = $createProduct->execute($productName, $productCount, $productPrice, $productUnit);
+        $response = new Response();
+        $response->setContent(json_encode(array(
+            'result' => $result
         )));
         $response->headers->set('Content-Type', 'application/json');
         return $response;
