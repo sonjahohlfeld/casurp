@@ -3,5 +3,19 @@ $(function () {
         var name = $('#createNewProduct_name').val()
         var count = $('#createNewProduct_count').val()
         var price = $('#createNewProduct_price').val()
+        var unit = $('#createNewProduct_unit').val()
+        $.ajax({
+            method: 'POST',
+            url: Routing.generate('create_product'),
+            data: {
+                productName: name,
+                productCount: count,
+                productPrice: price,
+                productUnit: unit
+            },
+            success: function(data){
+                console.log(data)
+            }
+        })
     })
 })
