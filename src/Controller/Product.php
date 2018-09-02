@@ -62,6 +62,7 @@ class Product extends Controller
         $productCount = $request->query->get('productCount');
         $productPrice = $request->query->get('productPrice');
         $productUnit = $request->query->get('productUnit');
+        var_dump($request);
         $result = $createProduct->execute($productName, $productCount, $productPrice, $productUnit);
         $response = new Response();
         $response->setContent(json_encode(array(
