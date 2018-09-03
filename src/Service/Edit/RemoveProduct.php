@@ -16,16 +16,17 @@ class RemoveProduct
         $this->em = $entityManager;
     }
 
-    public function execute($product){
+    public function execute($productId){
         $result = array();
         $p = $this->em->getRepository(\App\Entity\Product::class)->findOneBy(array(
-            'name' => $product
+            'id' => $productId
         ));
         if($p === null){
-            $result['error'] = "There exist no product with the name ".$product;
+            $result['error'] = "There exist no product with the id ".$productId;
         } else {
             $this->em->remove($p);
-            $result['success'] = "Successfully remove product ".$product;
+            $this->em->flush();
+            $result['success'] = "Successfully remove product ".$productId;
         }
         return $result;
     }
