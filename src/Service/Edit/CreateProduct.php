@@ -11,6 +11,7 @@ namespace App\Service\Edit;
 
 use App\Entity\Product;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\DBAL\DBALException;
 
 class CreateProduct
 {
@@ -21,13 +22,23 @@ class CreateProduct
     }
 
     public function execute($name, $count, $price, $unit){
+        $result = array();
         $p = new Product();
         $p->setName($name);
         $p->setCount($count);
         $p->setPrice($price);
         $p->setUnit($unit);
-        $this->em->persist($p);
-        $this->em->flush();
-        return array("error" => null);
+        try {
+            $this->em->persist($p);
+            $this->em->flush();
+            $result = array(
+                "success" => "Created new product ".$name." successfully."
+            );
+        } catch (DBALException $e){
+            $result = array(
+                "error" => $e->getMessage()
+            );
+        }
+        return $result;
     }
 }
