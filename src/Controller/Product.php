@@ -35,17 +35,17 @@ class Product extends Controller
     }
 
     /**
-     * @Route("/products/remove", name="remove_product", methods={"GET"}, options={"expose"=TRUE})
+     * @Route("/products/remove", name="remove_product", options={"expose"=TRUE})
      * @param Request $request
      * @param \App\Service\Edit\RemoveProduct $removeProduct
      * @return Response
      */
     public function removeProduct(Request $request, \App\Service\Edit\RemoveProduct $removeProduct){
-        $productName = $request->query->get('productName');
-        $result = $removeProduct->execute($productName);
+        $productId = $request->request->get('productId');
+        $result = $removeProduct->execute($productId);
         $response = new Response();
         $response->setContent(json_encode(array(
-            'count' => $result
+            'result' => $result
         )));
         $response->headers->set('Content-Type', 'application/json');
         return $response;
