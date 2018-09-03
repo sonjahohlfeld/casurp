@@ -32,7 +32,7 @@ $(function () {
         var productId = this.attributes.getNamedItem("id").value
         $.ajax({
             method: 'POST',
-            url: '/products/delete',
+            url: '/products/remove',
             data: {
                 productId: productId
             },
