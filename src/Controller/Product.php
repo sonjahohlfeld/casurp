@@ -58,11 +58,10 @@ class Product extends Controller
      * @Route("/products/create", name="create_product")
      */
     public function createNewProduct(Request $request, CreateProduct $createProduct){
-        $productName = $request->query->get('productName');
-        $productCount = $request->query->get('productCount');
-        $productPrice = $request->query->get('productPrice');
-        $productUnit = $request->query->get('productUnit');
-        var_dump($request);
+        $productName = $request->request->get('productName');
+        $productCount = $request->request->get('productCount');
+        $productPrice = $request->request->get('productPrice');
+        $productUnit = $request->request->get('productUnit');
         $result = $createProduct->execute($productName, $productCount, $productPrice, $productUnit);
         $response = new Response();
         $response->setContent(json_encode(array(
