@@ -16,7 +16,7 @@ class ChangeCountOfProduct
         $this->em = $entityManager;
     }
 
-    public function execute($productId, $productName, $productCount, $productPrice, $productUnit){
+    public function execute($productId, $value){
         $result = array();
         $p = $this->em->getRepository(\App\Entity\Product::class)->findOneBy(array(
             'id' => $productId
@@ -24,13 +24,11 @@ class ChangeCountOfProduct
         if($p === null){
             $result['error'] = "There exist no product with the id ".$productId;
         } else {
-            $p->setProductName($productName);
-            $p->setProductCount($productCount);
-            $p->setProductPrice($productPrice);
-            $p->setProductUnit($productUnit);
+            $oldCount = $p->getCount();
+            $p->setCount($oldCount + $value);
             $this->em->persist($p);
             $this->em->flush();
-            $result['success'] = "Successfully remove product ".$productId;
+            $result['success'] = "Successfully update product count";
         }
         return $result;
     }

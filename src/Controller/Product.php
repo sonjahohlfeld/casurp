@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Service\Edit\ChangeCountOfProduct;
 use App\Service\Edit\CreateProduct;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -32,6 +33,25 @@ class Product extends Controller
         )));
         $response->headers->set('Content-Type', 'application/json');
         return $response;
+    }
+
+    /**
+     * @param Request $request
+     * @param ChangeCountOfProduct $changeCountOfProduct
+     * @return Response
+     * @Route("/products/changeCount")
+     */
+    public function changeCountOfProduct(Request $request, ChangeCountOfProduct $changeCountOfProduct){
+        $productId = $request->request->get('productId');
+        $value = $request->request->get('value');
+        $result = $changeCountOfProduct->execute($productId, $value);
+        $response = new Response();
+        $response->setContent(json_encode(array(
+            'result' => $result
+        )));
+        $response->headers->set('Content-Type', 'application/json');
+        return $response;
+
     }
 
     /**
