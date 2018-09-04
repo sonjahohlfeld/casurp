@@ -25,7 +25,11 @@ class ChangeCountOfProduct
             $result['error'] = "There exist no product with the id ".$productId;
         } else {
             $oldCount = $p->getCount();
-            $p->setCount($oldCount + $value);
+            if($oldCount > 0) {
+                $p->setCount($oldCount + $value);
+            } else {
+                $p->setCount(0);
+            }
             $this->em->persist($p);
             $this->em->flush();
             $result['success'] = "Successfully update product count";

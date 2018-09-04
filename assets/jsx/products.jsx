@@ -1,9 +1,9 @@
 $(function () {
     $(document).on('click', '#createNewProductConfirm', function(event){
-        var name = $('#createNewProduct_name').val()
-        var count = $('#createNewProduct_count').val()
-        var price = $('#createNewProduct_price').val()
-        var unit = $('#createNewProduct_unit').val()
+        let name = $('#createNewProduct_name').val()
+        let count = $('#createNewProduct_count').val()
+        let price = $('#createNewProduct_price').val()
+        let unit = $('#createNewProduct_unit').val()
         $.ajax({
             method: 'POST',
             url: '/products/create',
@@ -29,7 +29,7 @@ $(function () {
     })
 
     $('.removeButton').on('click', function () {
-        var productId = this.attributes.getNamedItem("id").value
+        let productId = this.attributes.getNamedItem("id").value
         $.ajax({
             method: 'POST',
             url: '/products/remove',
@@ -53,13 +53,22 @@ $(function () {
     })
 
     $('.incrementCount').on('click', function(){
-        var productId = this.attributes.getNamedItem("id").value
+        let productId = this.attributes.getNamedItem("id").value
+        changeCountOfProduct(productId, 1)
+    })
+
+    $('.decrementCount').on('click', function(){
+        let productId = this.attributes.getNamedItem("id").value
+        changeCountOfProduct(productId, -1)
+    })
+
+    function changeCountOfProduct(productId, value){
         $.ajax({
             method: 'POST',
             url: '/products/changeCount',
             data: {
                 productId: productId,
-                value: 1
+                value: value
             },
             success: function(data){
                 if('success' in data.result){
@@ -73,5 +82,5 @@ $(function () {
                 }
             }
         })
-    })
+    }
 })
