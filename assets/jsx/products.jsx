@@ -53,6 +53,25 @@ $(function () {
     })
 
     $('.incrementCount').on('click', function(){
-        console.log(this)
+        var productId = this.attributes.getNamedItem("id").value
+        $.ajax({
+            method: 'POST',
+            url: '/products/changeCount',
+            data: {
+                productId: productId,
+                value: 1
+            },
+            success: function(data){
+                if('success' in data.result){
+                    $('#resultMessage').append("<div class='alert alert-success alert-dismissable' role='alert'>" +
+                        data.result.success+
+                        "<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>")
+                } else {
+                    $('#resultMessage').append("<div class='alert alert-danger alert-dismissable' role='alert'>" +
+                        data.result.success+
+                        "<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>")
+                }
+            }
+        })
     })
 })
