@@ -5,11 +5,14 @@ MAINTAINER Sonja Hohlfeld <development@sonja-hohlfeld.de>
 RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
 RUN echo "deb http://dl.yarnpkg.com/debian/ stable main" > /etc/apt/sources.list.d/yarn.list
 RUN curl -sL https://deb.nodesource.com/setup_8.x | bash -
-COPY php.ini /usr/local/etc/php/
 
 RUN apt-get update \
 && apt-get install -yq nodejs git postgresql-client libpq-dev unzip vim libdbd-pg-perl liblog-log4perl-perl yarn jq cron\
+&& apt-get install libldap2-dev -y net-tools\
 && rm -rf /var/lib/apt/lists/* \
+&& docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu/ \
+&&  docker-php-ext-install ldap \
+&&  docker-php-ext-install sockets \
 && docker-php-ext-install pdo pdo_pgsql zip \
 && a2enmod rewrite \
 && docker-php-source delete

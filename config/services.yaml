@@ -34,7 +34,7 @@ services:
         arguments: ['@Symfony\Component\Ldap\Adapter\ExtLdap\Adapter']
     Symfony\Component\Ldap\Adapter\ExtLdap\Adapter:
         arguments:
-            -   host: my-server
+            -   host: auth.uni-wuerzburg.de
                 port: 389
                 encryption: tls
                 options:
