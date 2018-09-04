@@ -8,7 +8,7 @@
 
 namespace App\Service\Edit;
 
-class RemoveProduct
+class EditProduct
 {
     private $em;
 

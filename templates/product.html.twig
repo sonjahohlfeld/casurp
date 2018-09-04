@@ -5,7 +5,7 @@
     <div id="page-wrapper" style="margin: 0px; border: none;">
     <h1 class="page-header">Products</h1>
         <div id="resultMessage"></div>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" style="margin-bottom: 20px;">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createNewProductModal" style="margin-bottom: 20px;">
             Create new product
         </button>
     {% block navigation %}{% endblock %}
@@ -24,10 +24,8 @@
                         <div class="col-xs-9">
                             <div id="productName">{{ p.name }}</div>
                         </div>
-                        <button type="button" class="btn btn-default">
-                            Edit
-                            <span><i class="fa fa-edit"></i></span>
-                        </button>
+                        <span><i class="fa fa-plus incrementCount"></i></span>
+                        <span><i class="fa fa-minus decrementCount"></i></span>
                         <button type="button" class="btn btn-default removeButton" id="{{ p.id }}">
                             Delete
                             <span><i class="fa fa-remove"></i></span>
@@ -42,7 +40,7 @@
             </div>
     {% endfor %}
 </div>
-            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="createNewProductModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
