@@ -72,6 +72,10 @@ $('document').ready(function(){
     ]
 
     $('#coffeelist-table').DataTable({
+        ajax: {
+            'url': '/consumer',
+            'type': 'GET'
+        },
         dom: 'Bfrtip',
         data: coffeeData,
         columns: [
@@ -84,5 +88,18 @@ $('document').ready(function(){
             'pdfHtml5', 'csvHtml5', 'excelHtml5'
         ]
     })
+
+    addDataToTable()
+
+    function addDataToTable(){
+        $.ajax({
+            url: '/consumer',
+            method: 'GET',
+            success: function(data){
+                console.log(data)
+            }
+        })
+    }
+
 })
 

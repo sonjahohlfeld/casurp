@@ -20,7 +20,17 @@ class Consumer
      * @return Response
      */
     public function displayConsumer(\App\Service\Listing\Consumer $consumer){
-        $result = $consumer->execute();
+        $c = $consumer->execute();
+        $result = array();
+        for($i=0;$i<sizeof($c);$i++){
+            $thisConsumer = array(
+                'credit' => $c[$i]["paid"] + $c[$i]["expenses"],
+                'name' => $c[$i]["firstName"]." ".$c[$i]["lastName"],
+                'expenses' => $c[$i]["expenses"],
+                'paid' => $c[$i]["paid"]
+            );
+            array_push($result, $thisConsumer);
+        }
         $response = new Response();
         $response->setContent(json_encode(array(
             'consumer' => $result
