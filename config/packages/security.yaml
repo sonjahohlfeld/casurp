@@ -19,14 +19,6 @@ security:
 
             logout:       true
             anonymous:    true
-#            guard:
-#                authenticators:
-#                    - ldap_tools.security.ldap_guard_authenticator
-
-            form_login_ldap:
-                service: Symfony\Component\Ldap\Ldap
-                dn_string: 'uid={username},ou=accounts,o=uni-wuerzburg'
-
 
     access_control:
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
