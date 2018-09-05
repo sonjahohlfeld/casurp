@@ -16,16 +16,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class Startpage extends Controller
 {
-    /**
-     * @Route("/")
-     *
-     */
-    public function indexAction(){
-        return $this->render('/index.html.twig');
-    }
 
     /**
-     * @Route("/main", name="main")
+     * @Route("/", name="main")
      */
     public function mainAction(Overview $overview){
         $data = $overview->execute();
