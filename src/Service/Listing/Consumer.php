@@ -21,7 +21,7 @@ class Consumer
     }
 
     public function execute(){
-        return $this->em->getRepository(\App\Entity\Consumer::class)->findAll();
+        return $this->em->getRepository(\App\Entity\Consumer::class)->getConsumers();
     }
 
 }

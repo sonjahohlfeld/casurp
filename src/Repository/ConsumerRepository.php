@@ -47,4 +47,12 @@ class ConsumerRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function getConsumers(){
+        $qb = $this->getEntityManager()->createQueryBuilder();
+        $qb->select('c.id', 'c.firstName','c.lastName','c.expenses', 'c.paid')
+            ->from('App\Entity\Consumer','c');
+        $query = $qb->getQuery();
+        return $query->getResult();
+    }
 }
