@@ -27,7 +27,7 @@ class Consumer
     private $lastName;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="float")
      */
     private $expenses;
 
@@ -35,11 +35,6 @@ class Consumer
      * @ORM\Column(type="float")
      */
     private $paid;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $credit;
 
     public function getId(): ?int
     {
@@ -90,18 +85,6 @@ class Consumer
     public function setPaid(float $paid): self
     {
         $this->paid = $paid;
-
-        return $this;
-    }
-
-    public function getCredit(): ?int
-    {
-        return $this->credit;
-    }
-
-    public function setCredit(int $credit): self
-    {
-        $this->credit = $credit;
 
         return $this;
     }
