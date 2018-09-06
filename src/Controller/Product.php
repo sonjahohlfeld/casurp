@@ -50,7 +50,7 @@ class Product extends Controller
 
         curl_setopt($ch, CURLOPT_URL, "https://cctb-intern.biologie.uni-wuerzburg.de/hooks/3wrm81736jrkppo8oqswnf9nyh");
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, "{\n\"channel\": \"testing-webhooks\",\n\"username\": \"Awesome\",\n\"text\": \"Product: ".", Count: "." \"\n}");
+        curl_setopt($ch, CURLOPT_POSTFIELDS, "{\n\"channel\": \"testing-webhooks\",\n\"username\": \"Awesome\",\n\"text\": \"@channel Product: ".", Count: "." \"\n}");
         curl_setopt($ch, CURLOPT_POST, 1);
         //do not use this in production
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
