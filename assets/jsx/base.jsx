@@ -72,6 +72,16 @@ $('document').ready(function(){
                     {data: 'expenses'},
                     {data: 'paid'},
                     {data: 'credit'},
+                    {data: null}
+                ],
+                columnDefs: [
+                    {
+                        targets: 4,
+                        render: (data, type, full) => {
+                            console.log(full)
+                            return '<i onclick="removeCustomer('+"'"+full.id+"'"+');"class="fa fa-edit"></i>'
+                        }
+                    }
                 ],
                 buttons: [
                     'pdfHtml5', 'csvHtml5', 'excelHtml5'
@@ -81,5 +91,6 @@ $('document').ready(function(){
         .fail(function(){
             $('#coffeelist-table').append("<div class='alert alert-success alert-dismissable' role='alert'>Could not load data from database.<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>")
         })
+
 })
 

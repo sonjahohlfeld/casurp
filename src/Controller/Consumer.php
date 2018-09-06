@@ -24,6 +24,7 @@ class Consumer
         $result = array();
         for($i=0;$i<sizeof($c);$i++){
             $thisConsumer = array(
+                'id' => $c[$i]["id"],
                 'credit' => $c[$i]["paid"] + $c[$i]["expenses"],
                 'name' => $c[$i]["firstName"]." ".$c[$i]["lastName"],
                 'expenses' => $c[$i]["expenses"],
