@@ -20,6 +20,8 @@ RUN apt-get update \
 RUN git clone --branch ${BRANCH} --recursive https://github.com/sonjahohlfeld/casurp.git /casurp
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
+COPY php.ini /usr/local/etc/php/
+
 RUN cd /casurp; composer install --no-interaction
 RUN cd /casurp; yarn install --non-interactive
 RUN cd /casurp; ./node_modules/.bin/encore dev
