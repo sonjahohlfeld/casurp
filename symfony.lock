@@ -1,4 +1,7 @@
 {
+    "curl/curl": {
+        "version": "1.9.3"
+    },
     "doctrine/annotations": {
         "version": "1.0",
         "recipe": {

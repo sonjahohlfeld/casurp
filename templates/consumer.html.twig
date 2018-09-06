@@ -1,0 +1,73 @@
+{% extends 'navigation.html.twig' %}
+
+{% block content %}
+
+    <div id="page-wrapper" style="margin: 0px; border: none;">
+    <h1 class="page-header">Consumers</h1>
+        <div id="resultMessage"></div>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createNewProductModal" style="margin-bottom: 20px;">
+            Create new product
+        </button>
+    {% block navigation %}{% endblock %}
+    {% for p in products %}
+        <div class="row">
+            <div class="col-lg-4">
+        {% if p.count >= 10 %}
+            <div class="panel panel-success">
+        {% elseif p.count > 1 %}
+            <div class="panel panel-warning">
+        {% else %}
+            <div class="panel panel-danger">
+        {% endif %}
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-9">
+                            <div id="productName">{{ p.name }}</div>
+                        </div>
+                        <span><i class="fa fa-plus incrementCount" id="{{ p.id }}"></i></span>
+                        <span><i class="fa fa-minus decrementCount" id="{{ p.id }}"></i></span>
+                        <button type="button" class="btn btn-default removeButton" id="{{ p.id }}">
+                            Delete
+                            <span><i class="fa fa-remove"></i></span>
+                        </button>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div>{{ p.count }} {{ p.unit }}</div>
+                </div>
+            </div>
+            </div>
+            </div>
+    {% endfor %}
+</div>
+            <div class="modal fade" id="createNewProductModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Create new Product</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row" style="margin-left: 20px; margin-bottom: 10px;">
+                                <label for="createNewProduct_name">Name: </label><input type="text" id="createNewProduct_name" style="margin-left: 15px;">
+                            </div>
+                            <div class="row" style="margin-left: 20px; margin-bottom: 10px;">
+                                <label for="createNewProduct_count">Count: </label><input type="text" id="createNewProduct_count" style="margin-left: 15px;">
+                            </div>
+                            <div class="row" style="margin-left: 20px; margin-bottom: 10px;">
+                                <label for="createNewProduct_price">Price: </label><input type="text" id="createNewProduct_price" style="margin-left: 15px;">
+                            </div>
+                            <div class="row" style="margin-left: 20px; margin-bottom: 10px;">
+                                <label for="createNewProduct_unit">Unit: </label><input type="text" id="createNewProduct_unit" style="margin-left: 15px;">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            {#<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>#}
+                            <button id="createNewProductConfirm" type="button" data-dismiss="modal" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+{% endblock %}
