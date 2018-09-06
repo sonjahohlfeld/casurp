@@ -62,44 +62,24 @@ $('document').ready(function(){
         labels: ['Series A', 'Series B']
     });
 
-    let coffeeData = [
-        {
-            'name': 'Testi Testmann',
-            'expenses': '2,00 €',
-            'paid': '5,00 €',
-            'credit': '+ 3,00 €'
-        }
-    ]
-
-    $('#coffeelist-table').DataTable({
-        ajax: {
-            'url': '/consumer',
-            'type': 'GET'
-        },
-        dom: 'Bfrtip',
-        data: coffeeData,
-        columns: [
-            {data: 'name'},
-            {data: 'expenses'},
-            {data: 'paid'},
-            {data: 'credit'},
-        ],
-        buttons: [
-            'pdfHtml5', 'csvHtml5', 'excelHtml5'
-        ]
-    })
-
-    addDataToTable()
-
-    function addDataToTable(){
-        $.ajax({
-            url: '/consumer',
-            method: 'GET',
-            success: function(data){
-                console.log(data)
-            }
+    $.getJSON('/consumer')
+        .done(function(data){
+            $('#coffeelist-table').DataTable({
+                dom: 'Bfrtip',
+                data: data.consumer,
+                columns: [
+                    {data: 'name'},
+                    {data: 'expenses'},
+                    {data: 'paid'},
+                    {data: 'credit'},
+                ],
+                buttons: [
+                    'pdfHtml5', 'csvHtml5', 'excelHtml5'
+                ]
+            })
         })
-    }
-
+        .fail(function(){
+            $('#coffeelist-table').append("<div class='alert alert-success alert-dismissable' role='alert'>Could not load data from database.<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>")
+        })
 })
 
