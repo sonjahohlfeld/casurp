@@ -46,22 +46,6 @@ $('document').ready(function(){
         })
     })
 
-    Morris.Bar({
-        element: 'morris-bar-chart',
-        data: [
-            { y: '2006', a: 100, b: 90 },
-            { y: '2007', a: 75,  b: 65 },
-            { y: '2008', a: 50,  b: 40 },
-            { y: '2009', a: 75,  b: 65 },
-            { y: '2010', a: 50,  b: 40 },
-            { y: '2011', a: 75,  b: 65 },
-            { y: '2012', a: 100, b: 90 }
-        ],
-        xkey: 'y',
-        ykeys: ['a', 'b'],
-        labels: ['Series A', 'Series B']
-    });
-
     $.getJSON('/consumer')
         .done(function(data){
             $('#coffeelist-table').DataTable({
@@ -71,17 +55,7 @@ $('document').ready(function(){
                     {data: 'name'},
                     {data: 'expenses'},
                     {data: 'paid'},
-                    {data: 'credit'},
-                    {data: null}
-                ],
-                columnDefs: [
-                    {
-                        targets: 4,
-                        render: (data, type, full) => {
-                            console.log(full)
-                            return '<i onclick="removeCustomer('+"'"+full.id+"'"+');"class="fa fa-edit"></i>'
-                        }
-                    }
+                    {data: 'credit'}
                 ],
                 buttons: [
                     'pdfHtml5', 'csvHtml5', 'excelHtml5'
