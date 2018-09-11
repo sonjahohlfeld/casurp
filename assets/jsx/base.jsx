@@ -46,7 +46,7 @@ $('document').ready(function(){
         })
     })
 
-    $.getJSON('/consumer')
+    $.getJSON('/getConsumers')
         .done(function(data){
             $('#coffeelist-table').DataTable({
                 dom: 'Bfrtip',

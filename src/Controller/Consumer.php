@@ -9,29 +9,19 @@
 namespace App\Controller;
 
 
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class Consumer
+class Consumer extends Controller
 {
     /**
-     * @Route("/consumer")
+     * @Route("/getConsumers")
      * @param \App\Service\Listing\Consumer $consumer
      * @return Response
      */
-    public function displayConsumer(\App\Service\Listing\Consumer $consumer){
-        $c = $consumer->execute();
-        $result = array();
-        for($i=0;$i<sizeof($c);$i++){
-            $thisConsumer = array(
-                'id' => $c[$i]["id"],
-                'credit' => $c[$i]["paid"] + $c[$i]["expenses"],
-                'name' => $c[$i]["firstName"]." ".$c[$i]["lastName"],
-                'expenses' => $c[$i]["expenses"],
-                'paid' => $c[$i]["paid"]
-            );
-            array_push($result, $thisConsumer);
-        }
+    public function getConsumers(\App\Service\Listing\Consumer $consumer){
+        $result = $this->generateData($consumer->execute());
         $response = new Response();
         $response->setContent(json_encode(array(
             'consumer' => $result
