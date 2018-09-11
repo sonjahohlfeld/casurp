@@ -74,6 +74,7 @@ $(function () {
                     $('#resultMessage').append("<div class='alert alert-success alert-dismissable' role='alert'>" +
                         data.result.success+
                         "<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>")
+                    updateCountOfProduct(productId, data.result.count, data.result.unit)
                 } else {
                     $('#resultMessage').append("<div class='alert alert-danger alert-dismissable' role='alert'>" +
                         data.result.success+
@@ -81,5 +82,9 @@ $(function () {
                 }
             }
         })
+    }
+
+    function updateCountOfProduct(productId, productCount, productUnit){
+        $('#productPanelCount-'+productId).html(productCount + " " + productUnit)
     }
 })
