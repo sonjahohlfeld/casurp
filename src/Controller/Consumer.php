@@ -68,12 +68,16 @@ class Consumer extends Controller
      * @return Response
      */
     public function getDetailsOfConsumer($consumerId, \App\Service\Details\Consumer $consumer){
-        $result = $consumer->execute($consumerId);
-        $response = new Response();
-        $response->setContent(json_encode(array(
+        $result = $this->generateData($consumer->execute($consumerId));
+//        $response = new Response();
+//        $response->setContent(json_encode(array(
+//            'consumer' => $result
+//        )));
+//        $response->headers->set('Content-Type', 'application/json');
+//        return $response;
+        $twigParameter = array(
             'consumer' => $result
-        )));
-        $response->headers->set('Content-Type', 'application/json');
-        return $response;
+        );
+        return $this->render('/consumer.details.html.twig', $twigParameter);
     }
 }
