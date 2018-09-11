@@ -20,10 +20,9 @@ $(function () {
                         "<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>")
                 } else {
                     $('#resultMessage').append("<div class='alert alert-danger alert-dismissable' role='alert'>" +
-                        data.result.success+
+                        data.result.error+
                         "<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>")
                 }
-                $('#exampleModal').modal('hide');
             }
         })
     })
@@ -41,12 +40,12 @@ $(function () {
                     $('#resultMessage').append("<div class='alert alert-success alert-dismissable' role='alert'>" +
                         data.result.success+
                         "<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>")
+                    $('#productPanel-'+productId).remove()
                 } else {
                     $('#resultMessage').append("<div class='alert alert-danger alert-dismissable' role='alert'>" +
-                        data.result.success+
+                        data.result.error+
                         "<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>")
                 }
-                $('#exampleModal').modal('hide');
             }
 
         })
