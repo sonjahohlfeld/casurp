@@ -29,4 +29,35 @@ class Consumer extends Controller
         $response->headers->set('Content-Type', 'application/json');
         return $response;
     }
+
+    /**
+     * @Route("/consumers", name="consumers")
+     */
+    public function displayConsumers(\App\Service\Listing\Consumer $consumer){
+        $result = $this->generateData($consumer->execute());
+        $twigParameter = array(
+            'consumer' => $result
+        );
+        return $this->render('/consumer.html.twig', $twigParameter);
+    }
+
+    /**
+     * @param $consumers
+     * @return array
+     */
+    private function generateData($consumers): array
+    {
+        $result = array();
+        for ($i = 0; $i < sizeof($consumers); $i++) {
+            $thisConsumer = array(
+                'id' => $consumers[$i]["id"],
+                'credit' => $consumers[$i]["paid"] + $consumers[$i]["expenses"],
+                'name' => $consumers[$i]["firstName"] . " " . $consumers[$i]["lastName"],
+                'expenses' => $consumers[$i]["expenses"],
+                'paid' => $consumers[$i]["paid"]
+            );
+            array_push($result, $thisConsumer);
+        }
+        return $result;
+    }
 }
