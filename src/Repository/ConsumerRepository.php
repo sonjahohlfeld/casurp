@@ -19,39 +19,20 @@ class ConsumerRepository extends ServiceEntityRepository
         parent::__construct($registry, Consumer::class);
     }
 
-//    /**
-//     * @return Consumer[] Returns an array of Consumer objects
-//     */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('c.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?Consumer
-    {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
-
     public function getConsumers(){
         $qb = $this->getEntityManager()->createQueryBuilder();
         $qb->select('c.id', 'c.firstName','c.lastName','c.expenses', 'c.paid')
             ->from('App\Entity\Consumer','c');
+        $query = $qb->getQuery();
+        return $query->getResult();
+    }
+
+    public function findByConsumerId($consumerId){
+        $qb = $this->getEntityManager()->createQueryBuilder();
+        $qb->select('c.id', 'c.firstName', 'c.lastName', 'c.expenses', 'c.paid')
+            ->from('App\Entity\Consumer', 'c')
+            ->where('c.id = :consumerId')
+            ->setParameter('consumerId', $consumerId);
         $query = $qb->getQuery();
         return $query->getResult();
     }
