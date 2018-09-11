@@ -33,6 +33,8 @@ class ChangeCountOfProduct
             $this->em->persist($p);
             $this->em->flush();
             $result['success'] = "Successfully update product count";
+            $result['count'] = $p->getCount();
+            $result['unit'] = $p->getUnit();
         }
         return $result;
     }
