@@ -35,6 +35,7 @@ class ChangeCountOfProduct
             $result['success'] = "Successfully update product count";
             $result['count'] = $p->getCount();
             $result['unit'] = $p->getUnit();
+            $result['name'] = $p->getName();
         }
         return $result;
     }
