@@ -60,4 +60,20 @@ class Consumer extends Controller
         }
         return $result;
     }
+
+    /**
+     * @Route("/consumers/{consumerId}", name="consumer_details")
+     * @param $consumerId
+     * @param \App\Service\Details\Consumer $consumer
+     * @return Response
+     */
+    public function getDetailsOfConsumer($consumerId, \App\Service\Details\Consumer $consumer){
+        $result = $consumer->execute($consumerId);
+        $response = new Response();
+        $response->setContent(json_encode(array(
+            'consumer' => $result
+        )));
+        $response->headers->set('Content-Type', 'application/json');
+        return $response;
+    }
 }
