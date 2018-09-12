@@ -23,11 +23,11 @@ class ProductRepository extends ServiceEntityRepository
 //    /**
 //     * @return Product[] Returns an array of Product objects
 //     */
-    public function findByProductName($value){
+    public function findByProductId($value){
         $qb = $this->getEntityManager()->createQueryBuilder();
         $qb->select('p.id', 'p.name','p.price', 'p.count','p.unit')
             ->from('App\Entity\Product','p')
-            ->where('p.name = :value')
+            ->where('p.id = :value')
             ->setParameter('value', $value);
         $query = $qb->getQuery();
         return $query->getResult();

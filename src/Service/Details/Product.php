@@ -17,7 +17,7 @@ class Product
         $this->em = $entityManager;
     }
 
-    public function getDetailsOfProduct($product){
-        return $this->em->getRepository(\App\Entity\Product::class)->findByProductName($product);
+    public function execute($productId){
+        return $this->em->getRepository(\App\Entity\Product::class)->findByProductId($productId);
     }
 }
