@@ -3,71 +3,111 @@
 {% block content %}
 
     <div id="page-wrapper" style="margin: 0px; border: none;">
-    <h1 class="page-header">Products</h1>
+        <h1 class="page-header">Products</h1>
         <div id="resultMessage"></div>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createNewProductModal" style="margin-bottom: 20px;">
-            Create new product
-        </button>
-    {% block navigation %}{% endblock %}
-    {% for p in products %}
-        <div class="row" id="productPanel-{{ p.id }}">
-            <div class="col-lg-4">
-        {% if p.count >= 10 %}
-            <div class="panel panel-success">
-        {% elseif p.count > 1 %}
-            <div class="panel panel-warning">
-        {% else %}
-            <div class="panel panel-danger">
-        {% endif %}
-                <div class="panel-heading">
-                    <div class="row">
-                        <div class="col-xs-9">
-                            <div id="productName">{{ p.name }}</div>
+        {% block navigation %}{% endblock %}
+        <div class="col-lg-3">
+            <div class="consumer-card" style="width: 100%; height: 6em;">
+                <div style="font-size: 18px; font-weight: 100;">
+                    + Add new product
+                </div>
+            </div>
+        </div>
+        {% for p in products %}
+            <div class="col-lg-3" style="margin-bottom: 15px;">
+                <a class="productDetails-link" href="/products/{{ p.id }}" style="color: rgb(51, 51, 51);">
+                    <div class="product-card" style="width: 100%; height: 6em;">
+                        <div style="font-size: 18px;">
+                            {{ p.name }}
                         </div>
-                        <span><i class="fa fa-plus incrementCount" id="{{ p.id }}"></i></span>
-                        <span><i class="fa fa-minus decrementCount" id="{{ p.id }}"></i></span>
-                        <button type="button" class="btn btn-default removeButton" id="{{ p.id }}">
-                            Delete
-                            <span><i class="fa fa-remove"></i></span>
-                        </button>
+                        {%  if p.count > 5 %}
+                            <div style="font-size: 18px; color: #3f903f">
+                                {{ p.count }} {{ p.unit }}
+                            </div>
+                        {% elseif p.count > 2 %}
+                            <div style="font-size: 18px; color: #df8a13">
+                                {{ p.count }} {{ p.unit }}
+                            </div>
+                        {% else %}
+                            <div style="font-size: 18px; color: #c7254e">
+                                {{ p.count }} {{ p.unit }}
+                            </div>
+                        {% endif %}
                     </div>
-                </div>
-                <div class="panel-body">
-                    <div id="productPanelCount-{{ p.id }}">{{ p.count }} {{ p.unit }}</div>
-                </div>
+                </a>
             </div>
-            </div>
-            </div>
-    {% endfor %}
-</div>
-            <div class="modal fade" id="createNewProductModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Create new Product</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="row" style="margin-left: 20px; margin-bottom: 10px;">
-                                <label for="createNewProduct_name">Name: </label><input type="text" id="createNewProduct_name" style="margin-left: 15px;">
-                            </div>
-                            <div class="row" style="margin-left: 20px; margin-bottom: 10px;">
-                                <label for="createNewProduct_count">Count: </label><input type="text" id="createNewProduct_count" style="margin-left: 15px;">
-                            </div>
-                            <div class="row" style="margin-left: 20px; margin-bottom: 10px;">
-                                <label for="createNewProduct_price">Price: </label><input type="text" id="createNewProduct_price" style="margin-left: 15px;">
-                            </div>
-                            <div class="row" style="margin-left: 20px; margin-bottom: 10px;">
-                                <label for="createNewProduct_unit">Unit: </label><input type="text" id="createNewProduct_unit" style="margin-left: 15px;">
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            {#<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>#}
-                            <button id="createNewProductConfirm" type="button" data-dismiss="modal" class="btn btn-primary">Save changes</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        {% endfor %}
+    </div>
 {% endblock %}
+
+{#{% block content %}#}
+
+    {#<div id="page-wrapper" style="margin: 0px; border: none;">#}
+    {#<h1 class="page-header">Products</h1>#}
+        {#<div id="resultMessage"></div>#}
+        {#<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createNewProductModal" style="margin-bottom: 20px;">#}
+            {#Create new product#}
+        {#</button>#}
+    {#{% block navigation %}{% endblock %}#}
+    {#{% for p in products %}#}
+        {#<div class="row" id="productPanel-{{ p.id }}">#}
+            {#<div class="col-lg-4">#}
+        {#{% if p.count >= 10 %}#}
+            {#<div class="panel panel-success">#}
+        {#{% elseif p.count > 1 %}#}
+            {#<div class="panel panel-warning">#}
+        {#{% else %}#}
+            {#<div class="panel panel-danger">#}
+        {#{% endif %}#}
+                {#<div class="panel-heading">#}
+                    {#<div class="row">#}
+                        {#<div class="col-xs-9">#}
+                            {#<div id="productName">{{ p.name }}</div>#}
+                        {#</div>#}
+                        {#<span><i class="fa fa-plus incrementCount" id="{{ p.id }}"></i></span>#}
+                        {#<span><i class="fa fa-minus decrementCount" id="{{ p.id }}"></i></span>#}
+                        {#<button type="button" class="btn btn-default removeButton" id="{{ p.id }}">#}
+                            {#Delete#}
+                            {#<span><i class="fa fa-remove"></i></span>#}
+                        {#</button>#}
+                    {#</div>#}
+                {#</div>#}
+                {#<div class="panel-body">#}
+                    {#<div id="productPanelCount-{{ p.id }}">{{ p.count }} {{ p.unit }}</div>#}
+                {#</div>#}
+            {#</div>#}
+            {#</div>#}
+            {#</div>#}
+    {#{% endfor %}#}
+{#</div>#}
+            {#<div class="modal fade" id="createNewProductModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">#}
+                {#<div class="modal-dialog" role="document">#}
+                    {#<div class="modal-content">#}
+                        {#<div class="modal-header">#}
+                            {#<h5 class="modal-title" id="exampleModalLabel">Create new Product</h5>#}
+                            {#<button type="button" class="close" data-dismiss="modal" aria-label="Close">#}
+                                {#<span aria-hidden="true">&times;</span>#}
+                            {#</button>#}
+                        {#</div>#}
+                        {#<div class="modal-body">#}
+                            {#<div class="row" style="margin-left: 20px; margin-bottom: 10px;">#}
+                                {#<label for="createNewProduct_name">Name: </label><input type="text" id="createNewProduct_name" style="margin-left: 15px;">#}
+                            {#</div>#}
+                            {#<div class="row" style="margin-left: 20px; margin-bottom: 10px;">#}
+                                {#<label for="createNewProduct_count">Count: </label><input type="text" id="createNewProduct_count" style="margin-left: 15px;">#}
+                            {#</div>#}
+                            {#<div class="row" style="margin-left: 20px; margin-bottom: 10px;">#}
+                                {#<label for="createNewProduct_price">Price: </label><input type="text" id="createNewProduct_price" style="margin-left: 15px;">#}
+                            {#</div>#}
+                            {#<div class="row" style="margin-left: 20px; margin-bottom: 10px;">#}
+                                {#<label for="createNewProduct_unit">Unit: </label><input type="text" id="createNewProduct_unit" style="margin-left: 15px;">#}
+                            {#</div>#}
+                        {#</div>#}
+                        {#<div class="modal-footer">#}
+                            {#<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>#}
+                            {#<button id="createNewProductConfirm" type="button" data-dismiss="modal" class="btn btn-primary">Save changes</button>#}
+                        {#</div>#}
+                    {#</div>#}
+                {#</div>#}
+            {#</div>#}
+{#{% endblock %}#}
