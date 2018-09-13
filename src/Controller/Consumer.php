@@ -9,7 +9,9 @@
 namespace App\Controller;
 
 
+use App\Service\Edit\ChangeCreditOfConsumer;
 use App\Service\Edit\CreateConsumer;
+use App\Service\Edit\RemoveConsumer;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -84,13 +86,49 @@ class Consumer extends Controller
      * @param CreateConsumer $createConsumer
      * @return Response
      */
-    public function createNewConsumer(Request $request, CreateConsumer $createConsumer){
+    public function createNewConsumer(Request $request, CreateConsumer $createConsumer)
+    {
         $firstName = $request->request->get('consumerFirstName');
         $lastName = $request->request->get('consumerLastName');
         $email = $request->request->get('email');
         $expenses = $request->request->get('expenses');
         $paid = $request->request->get('paid');
         $result = $createConsumer->execute($firstName, $lastName, $email, $expenses, $paid);
+        $response = new Response();
+        $response->setContent(json_encode(array(
+            'result' => $result
+        )));
+        $response->headers->set('Content-Type', 'application/json');
+        return $response;
+    }
+
+    /**
+     * @Route("/consumersRemove", name="consumer_remove")
+     * @param Request $request
+     * @param RemoveConsumer $removeCustomer
+     * @return Response
+     */
+    public function removeCustomer(Request $request, RemoveConsumer $removeConsumer){
+        $consumerId = $request->request->get('consumerId');
+        $result = $removeConsumer->execute($consumerId);
+        $response = new Response();
+        $response->setContent(json_encode(array(
+            'result' => $result
+        )));
+        $response->headers->set('Content-Type', 'application/json');
+        return $response;
+    }
+
+    /**
+     * @param Request $request
+     * @param ChangeCreditOfConsumer $changeCreditOfConsumer
+     * @return Response
+     * @Route("/consumersChangeCredit", name="consumer_change_credit")
+     */
+    public function changeCountOfProduct(Request $request, ChangeCreditOfConsumer $changeCreditOfConsumer){
+        $consumerId = $request->request->get('consumerId');
+        $value = $request->request->get('value');
+        $result = $changeCreditOfConsumer->execute($consumerId, $value);
         $response = new Response();
         $response->setContent(json_encode(array(
             'result' => $result
