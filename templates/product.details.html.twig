@@ -1,0 +1,30 @@
+{% extends 'navigation.html.twig' %}
+
+{% block content %}
+
+    {% block navigation %}{% endblock %}
+    <div id="page-wrapper" style="margin: 0px; border: none;">
+        <div id="resultMessage"></div>
+        <div class="row">
+            <h1>{{ consumer[0].name }}</h1>
+        </div>
+        <div class="row">
+            {% if consumer[0].credit >= 0 %}
+                <h1 style="color: #3f903f">{{ consumer[0].credit }} &euro;</h1>
+            {% else %}
+                <h1 style="color: #c7254e">{{ consumer[0].credit }} &euro;</h1>
+            {% endif %}
+        </div>
+        <div class="row">
+            <h4>Charge credit</h4>
+        </div>
+        <div class="row">
+            <button type="button" class="btn btn-default" value="0.1">0.10 &euro;</button>
+            <button type="button" class="btn btn-default" value="0.5">0.50 &euro;</button>
+            <button type="button" class="btn btn-default" value="1.0">1.00 &euro;</button>
+            <button type="button" class="btn btn-default" value="5.0">5.00 &euro;</button>
+            <button type="button" class="btn btn-default" value="10.00">10.00 &euro;</button>
+            <button type="button" class="btn btn-default" >?</button>
+        </div>
+    </div>
+{% endblock %}
