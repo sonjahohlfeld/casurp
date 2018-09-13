@@ -20,9 +20,10 @@ $(function () {
                         "<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>")
 
                      $('#productCards').append("<div class='col-lg-3' style='margin-bottom: 15px;'>" +
+                         "<div class='product-card' style='width: 100%; height: 6em;'><button type='button' class='btn btn-danger removeProductButton' id='"+data.result.product.id+"' style='margin-bottom: 10px;'>Remove</button>" +
                          "<a class='productDetails-link' href='/products/" + data.result.product.id +
                          "' style='color: rgb(51, 51, 51);'>" +
-                         "<div class='product-card' style='width: 100%; height: 6em;'><div style='font-size: 18px;'>"+ data.result.product.name +
+                         "<div style='font-size: 18px;'>"+ data.result.product.name +
                          "</div><div style='font-size: 18px; color: #3f903f'>"+data.result.product.count+" "+data.result.product.unit+
                          "</div></div></div></a></div>")
 

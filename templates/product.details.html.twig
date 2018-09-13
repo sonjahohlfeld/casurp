@@ -5,9 +5,10 @@
     {% block navigation %}{% endblock %}
     <div id="page-wrapper" style="margin: 0px; border: none;">
         <div id="resultMessage"></div>
-        <div class="row">
+        <div class="row" style="margin-top: 30px;">
             <h1>{{ product[0].name }}</h1>
         </div>
+        <div class="row">
         <div class="row">
             {% if product[0].count >= 3 %}
                 <h1 style="color: #3f903f">{{ product[0].count }} {{ product[0].unit }}</h1>
