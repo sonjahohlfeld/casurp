@@ -60,29 +60,25 @@ $(function () {
         })
     })
 
-    $('.incrementCount').on('click', function(){
+    $('.changeCount').on('click', function(){
         let productId = this.attributes.getNamedItem("id").value
-        changeCountOfProduct(productId, 1)
-    })
-
-    $('.decrementCount').on('click', function(){
-        let productId = this.attributes.getNamedItem("id").value
-        changeCountOfProduct(productId, -1)
+        let value = this.attributes.getNamedItem("value").value
+        changeCountOfProduct(productId, value)
     })
 
     function changeCountOfProduct(productId, value){
         $.ajax({
             method: 'POST',
-            url: '/products/changeCount',
+            url: '/productsChangeCount',
             data: {
                 productId: productId,
                 value: value
             },
             success: function(data){
                 if('success' in data.result){
-                    $('#resultMessage').append("<div class='alert alert-success alert-dismissable' role='alert'>" +
-                        data.result.success+
-                        "<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>")
+                    // $('#resultMessage').append("<div class='alert alert-success alert-dismissable' role='alert'>" +
+                    //     data.result.success+
+                    //     "<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>")
                     updateCountOfProduct(productId, data.result.count, data.result.unit)
                 } else {
                     $('#resultMessage').append("<div class='alert alert-danger alert-dismissable' role='alert'>" +
@@ -94,6 +90,10 @@ $(function () {
     }
 
     function updateCountOfProduct(productId, productCount, productUnit){
-        $('#productPanelCount-'+productId).html(productCount + " " + productUnit)
+        if(productCount >= 3) {
+            $('#productCardCount-'+productId).html("<h1 style='color: #3f903f'>" + productCount +" " +productUnit +"</h1>")
+        } else {
+            $('#productCardCount-' + productId).html("<h1 style='color: #c7254e'>" +productCount + " " + productUnit + "</h1>")
+        }
     }
 })

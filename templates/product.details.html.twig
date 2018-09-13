@@ -8,8 +8,7 @@
         <div class="row" style="margin-top: 30px;">
             <h1>{{ product[0].name }}</h1>
         </div>
-        <div class="row">
-        <div class="row">
+        <div class="row" id="productCardCount-{{ product[0].id }}">
             {% if product[0].count >= 3 %}
                 <h1 style="color: #3f903f">{{ product[0].count }} {{ product[0].unit }}</h1>
             {% else %}
@@ -17,15 +16,21 @@
             {% endif %}
         </div>
         <div class="row">
-            <h4>Charge credit</h4>
+            <h4>Update</h4>
         </div>
         <div class="row">
-            <button type="button" class="btn btn-default" value="0.1">0.10 &euro;</button>
-            <button type="button" class="btn btn-default" value="0.5">0.50 &euro;</button>
-            <button type="button" class="btn btn-default" value="1.0">1.00 &euro;</button>
-            <button type="button" class="btn btn-default" value="5.0">5.00 &euro;</button>
-            <button type="button" class="btn btn-default" value="10.00">10.00 &euro;</button>
-            <button type="button" class="btn btn-default" >?</button>
+            <button id={{ product[0].id }} type="button" class="btn btn-success changeCount" value="1">+1</button>
+            <button id={{ product[0].id }} type="button" class="btn btn-success changeCount" value="2">+2</button>
+            <button id={{ product[0].id }} type="button" class="btn btn-success changeCount" value="5">+5</button>
+            <button id={{ product[0].id }} type="button" class="btn btn-success changeCount" value="10">+10</button>
+            <button id={{ product[0].id }} type="button" class="btn btn-success" >?</button>
+        </div>
+        <div class="row" style="margin-top: 20px;">
+            <button id={{ product[0].id }} type="button" class="btn btn-danger changeCount" value="-1">-1</button>
+            <button id={{ product[0].id }} type="button" class="btn btn-danger changeCount" value="-2">-2</button>
+            <button id={{ product[0].id }} type="button" class="btn btn-danger changeCount" value="-5">-5</button>
+            <button id={{ product[0].id }} type="button" class="btn btn-danger changeCount" value="-10">-10</button>
+            <button id={{ product[0].id }} type="button" class="btn btn-danger" >?</button>
         </div>
     </div>
 {% endblock %}
