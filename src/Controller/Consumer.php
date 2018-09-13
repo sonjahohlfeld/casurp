@@ -9,7 +9,9 @@
 namespace App\Controller;
 
 
+use App\Service\Edit\CreateConsumer;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -54,7 +56,8 @@ class Consumer extends Controller
                 'credit' => $consumers[$i]["paid"] + $consumers[$i]["expenses"],
                 'name' => $consumers[$i]["firstName"] . " " . $consumers[$i]["lastName"],
                 'expenses' => $consumers[$i]["expenses"],
-                'paid' => $consumers[$i]["paid"]
+                'paid' => $consumers[$i]["paid"],
+                'email' => $consumers[$i]["email"]
             );
             array_push($result, $thisConsumer);
         }
@@ -69,15 +72,30 @@ class Consumer extends Controller
      */
     public function getDetailsOfConsumer($consumerId, \App\Service\Details\Consumer $consumer){
         $result = $this->generateData($consumer->execute($consumerId));
-//        $response = new Response();
-//        $response->setContent(json_encode(array(
-//            'consumer' => $result
-//        )));
-//        $response->headers->set('Content-Type', 'application/json');
-//        return $response;
         $twigParameter = array(
             'consumer' => $result
         );
         return $this->render('/consumer.details.html.twig', $twigParameter);
+    }
+
+    /**
+     * @Route("/consumersCreate", name="consumer_create")
+     * @param Request $request
+     * @param CreateConsumer $createConsumer
+     * @return Response
+     */
+    public function createNewConsumer(Request $request, CreateConsumer $createConsumer){
+        $firstName = $request->request->get('consumerFirstName');
+        $lastName = $request->request->get('consumerLastName');
+        $email = $request->request->get('email');
+        $expenses = $request->request->get('expenses');
+        $paid = $request->request->get('paid');
+        $result = $createConsumer->execute($firstName, $lastName, $email, $expenses, $paid);
+        $response = new Response();
+        $response->setContent(json_encode(array(
+            'result' => $result
+        )));
+        $response->headers->set('Content-Type', 'application/json');
+        return $response;
     }
 }
