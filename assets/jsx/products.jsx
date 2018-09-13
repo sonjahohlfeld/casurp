@@ -36,11 +36,11 @@ $(function () {
         })
     })
 
-    $('.removeButton').on('click', function () {
+    $('.removeProductButton').on('click', function () {
         let productId = this.attributes.getNamedItem("id").value
         $.ajax({
             method: 'POST',
-            url: '/products/remove',
+            url: '/productsRemove',
             data: {
                 productId: productId
             },
@@ -49,7 +49,7 @@ $(function () {
                     $('#resultMessage').append("<div class='alert alert-success alert-dismissable' role='alert'>" +
                         data.result.success+
                         "<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>")
-                    $('#productPanel-'+productId).remove()
+                    $('#productCard-'+productId).remove()
                 } else {
                     $('#resultMessage').append("<div class='alert alert-danger alert-dismissable' role='alert'>" +
                         data.result.error+
