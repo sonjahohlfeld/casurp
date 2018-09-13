@@ -45,64 +45,64 @@ $(function () {
         })
     })
 
-    // $('.removeProductButton').on('click', function () {
-    //     let productId = this.attributes.getNamedItem("id").value
-    //     $.ajax({
-    //         method: 'POST',
-    //         url: '/productsRemove',
-    //         data: {
-    //             productId: productId
-    //         },
-    //         success: function(data){
-    //             if('success' in data.result){
-    //                 $('#resultMessage').append("<div class='alert alert-success alert-dismissable' role='alert'>" +
-    //                     data.result.success+
-    //                     "<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>")
-    //                 $('#productCard-'+productId).remove()
-    //             } else {
-    //                 $('#resultMessage').append("<div class='alert alert-danger alert-dismissable' role='alert'>" +
-    //                     data.result.error+
-    //                     "<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>")
-    //             }
-    //         }
-    //
-    //     })
-    // })
-    //
-    // $('.changeCount').on('click', function(){
-    //     let productId = this.attributes.getNamedItem("id").value
-    //     let value = this.attributes.getNamedItem("value").value
-    //     changeCountOfProduct(productId, value)
-    // })
-    //
-    // function changeCountOfProduct(productId, value){
-    //     $.ajax({
-    //         method: 'POST',
-    //         url: '/productsChangeCount',
-    //         data: {
-    //             productId: productId,
-    //             value: value
-    //         },
-    //         success: function(data){
-    //             if('success' in data.result){
-    //                 // $('#resultMessage').append("<div class='alert alert-success alert-dismissable' role='alert'>" +
-    //                 //     data.result.success+
-    //                 //     "<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>")
-    //                 updateCountOfProduct(productId, data.result.count, data.result.unit)
-    //             } else {
-    //                 $('#resultMessage').append("<div class='alert alert-danger alert-dismissable' role='alert'>" +
-    //                     data.result.success+
-    //                     "<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>")
-    //             }
-    //         }
-    //     })
-    // }
-    //
-    // function updateCountOfProduct(productId, productCount, productUnit){
-    //     if(productCount >= 3) {
-    //         $('#productCardCount-'+productId).html("<h1 style='color: #3f903f'>" + productCount +" " +productUnit +"</h1>")
-    //     } else {
-    //         $('#productCardCount-' + productId).html("<h1 style='color: #c7254e'>" +productCount + " " + productUnit + "</h1>")
-    //     }
-    // }
+    $('.removeConsumerButton').on('click', function () {
+        let consumerId = this.attributes.getNamedItem("id").value
+        $.ajax({
+            method: 'POST',
+            url: '/consumersRemove',
+            data: {
+                consumerId: consumerId
+            },
+            success: function(data){
+                if('success' in data.result){
+                    $('#resultMessage').html("<div class='alert alert-success alert-dismissable' role='alert'>" +
+                        data.result.success+
+                        "<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>")
+                    $('#consumerCard-'+consumerId).remove()
+                } else {
+                    $('#resultMessage').html("<div class='alert alert-danger alert-dismissable' role='alert'>" +
+                        data.result.error+
+                        "<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>")
+                }
+            }
+
+        })
+    })
+
+    $('.changeCredit').on('click', function(){
+        let consumerId = this.attributes.getNamedItem("id").value
+        let value = this.attributes.getNamedItem("value").value
+        changeCreditofConsumer(consumerId, value)
+    })
+
+    function changeCreditofConsumer(consumerId, value){
+        $.ajax({
+            method: 'POST',
+            url: '/consumersChangeCredit',
+            data: {
+                consumerId: consumerId,
+                value: value
+            },
+            success: function(data){
+                if('success' in data.result){
+                    // $('#resultMessage').append("<div class='alert alert-success alert-dismissable' role='alert'>" +
+                    //     data.result.success+
+                    //     "<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>")
+                    updateCreditOfConsumer(consumerId, data.result.expenses, data.result.paid)
+                } else {
+                    $('#resultMessage').append("<div class='alert alert-danger alert-dismissable' role='alert'>" +
+                        data.result.success+
+                        "<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>")
+                }
+            }
+        })
+    }
+
+    function updateCreditOfConsumer(consumerId, expenses, paid){
+        if((paid - expenses) >= 0) {
+            $('#consumerCardCount-'+consumerId).html("<h1 style='color: #3f903f'>" + (paid - expenses) +"</h1>")
+        } else {
+            $('#consumerCardCount-' + consumerId).html("<h1 style='color: #c7254e'>" + (paid - expenses) + "</h1>")
+        }
+    }
 })
