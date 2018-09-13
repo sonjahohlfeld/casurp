@@ -25,16 +25,13 @@ class Product extends Controller
      * @Route("/products/{productId}", name="product_details")
      * @param $productId
      * @param \App\Service\Details\Product $product
-     * @return Response
      */
     public function getDetailsOfProduct($productId, \App\Service\Details\Product $product){
         $result = $product->execute($productId);
-        $response = new Response();
-        $response->setContent(json_encode(array(
+        $twigParameter = array(
             'product' => $result
-        )));
-        $response->headers->set('Content-Type', 'application/json');
-        return $response;
+        );
+        return $this->render('./product.details.html.twig', $twigParameter);
     }
 
     /**
