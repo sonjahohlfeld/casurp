@@ -36,6 +36,11 @@ class Consumer
      */
     private $paid;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $email;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -85,6 +90,18 @@ class Consumer
     public function setPaid(float $paid): self
     {
         $this->paid = $paid;
+
+        return $this;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(?string $email): self
+    {
+        $this->email = $email;
 
         return $this;
     }
