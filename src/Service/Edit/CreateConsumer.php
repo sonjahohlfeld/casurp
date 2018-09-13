@@ -9,11 +9,11 @@
 namespace App\Service\Edit;
 
 
-use App\Entity\Product;
+use App\Entity\Consumer;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\DBAL\DBALException;
 
-class CreateProduct
+class CreateConsumer
 {
     private $em;
 
@@ -21,30 +21,32 @@ class CreateProduct
         $this->em = $entityManager;
     }
 
-    public function execute($name, $count, $price, $unit){
-        $newProduct = $this->em->getRepository(Product::class)->findByProductName($name);
-        if($newProduct != null){
+    public function execute($firstName, $lastName, $email, $expenses, $paid){
+        $newConsumer = $this->em->getRepository(Consumer::class)->findByConsumerName($firstName, $lastName);
+        if($newConsumer != null){
             return $result = array(
-                'error' => "Product ".$newProduct[0]["name"]." already exists."
+                'error' => "Consumer ".$newConsumer[0]["firstName"]." ".$newConsumer[0]["lastName"]." already exists."
             );
         }
-        $p = new Product();
-        $p->setName($name);
-        $p->setCount($count);
-        $p->setPrice($price);
-        $p->setUnit($unit);
+        $c = new Consumer();
+        $c->setFirstName($firstName);
+        $c->setLastName($lastName);
+        $c->setEmail($email);
+        $c->setExpenses($expenses);
+        $c->setPaid($paid);
         try {
-            $this->em->persist($p);
+            $this->em->persist($c);
             $this->em->flush();
-            $newProduct = $this->em->getRepository(Product::class)->findByProductName($name);
+            $newConsumer = $this->em->getRepository(Consumer::class)->findByConsumerName($firstName, $lastName);
             $result = array(
-                "success" => "Created new product ".$name." successfully.",
-                "product" => array(
-                    'name' => $newProduct[0]["name"],
-                    'count' => $newProduct[0]["count"],
-                    'price' => $newProduct[0]["price"],
-                    'unit' => $newProduct[0]["unit"],
-                    'id' => $newProduct[0]["id"]
+                "success" => "Created new consumer ".$firstName. " ".$lastName." successfully.",
+                "consumer" => array(
+                    'firstName' => $newConsumer[0]["firstName"],
+                    'lastName' => $newConsumer[0]["lastName"],
+                    'email' => $newConsumer[0]["email"],
+                    'expenses' => $newConsumer[0]["expenses"],
+                    'paid' => $newConsumer[0]["paid"],
+                    'id' => $newConsumer[0]["id"]
                 )
             );
         } catch (DBALException $e){
