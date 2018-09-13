@@ -8,7 +8,7 @@
 
 namespace App\Service\Edit;
 
-class ChangeCountOfProduct
+class ChangeCreditOfConsumer
 {
     private $em;
 
@@ -16,22 +16,21 @@ class ChangeCountOfProduct
         $this->em = $entityManager;
     }
 
-    public function execute($productId, $value){
+    public function execute($consumerId, $value){
         $result = array();
-        $p = $this->em->getRepository(\App\Entity\Product::class)->findOneBy(array(
-            'id' => $productId
+        $c = $this->em->getRepository(\App\Entity\Consumer::class)->findOneBy(array(
+            'id' => $consumerId
         ));
-        if($p === null){
-            $result['error'] = "There exist no product with the id ".$productId;
+        if($c === null){
+            $result['error'] = "There exist no consumer with the id ".$consumerId;
         } else {
-            $oldCount = $p->getCount();
-            $p->setCount($oldCount + $value);
-            $this->em->persist($p);
+            $oldValue = $c->getPaid();
+            $c->setPaid($oldValue + $value);
+            $this->em->persist($c);
             $this->em->flush();
-            $result['success'] = "Successfully update product count";
-            $result['count'] = $p->getCount();
-            $result['unit'] = $p->getUnit();
-            $result['name'] = $p->getName();
+            $result['success'] = "Successfully update consumer credit";
+            $result['expenses'] = $c->getExpenses();
+            $result['paid'] = $c->getPaid();
         }
         return $result;
     }
