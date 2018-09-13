@@ -8,10 +8,10 @@
 
 namespace App\Service\Edit;
 
-
+use App\Entity\Consumer;
 use Doctrine\ORM\EntityManagerInterface;
 
-class RemoveCustomer
+class RemoveConsumer
 {
     private $em;
 
@@ -20,7 +20,17 @@ class RemoveCustomer
         $this->em = $entityManager;
     }
 
-    public function execute($customerId){
-        $customer = $this->em->getRepository()
+    public function execute($consumerId){
+        $consumer = $this->em->getRepository(Consumer::class)->findOneBy(array(
+            'id' => $consumerId
+        ));
+        if($consumer === null){
+            $result['error'] = "There exist no consumer with the id ".$consumerId;
+        } else {
+            $this->em->remove($consumer);
+            $this->em->flush();
+            $result['success'] = "Successfully remove consumer ".$consumerId;
+        }
+        return $result;
     }
 }
