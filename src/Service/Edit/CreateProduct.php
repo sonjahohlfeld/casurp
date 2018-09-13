@@ -22,7 +22,12 @@ class CreateProduct
     }
 
     public function execute($name, $count, $price, $unit){
-        $result = array();
+        $newProduct = $this->em->getRepository(Product::class)->findByProductName($name);
+        if($newProduct != null){
+            return $result = array(
+                'error' => "Product ".$newProduct[0]["name"]." already exists."
+            );
+        }
         $p = new Product();
         $p->setName($name);
         $p->setCount($count);
@@ -31,8 +36,16 @@ class CreateProduct
         try {
             $this->em->persist($p);
             $this->em->flush();
+            $newProduct = $this->em->getRepository(Product::class)->findByProductName($name);
             $result = array(
-                "success" => "Created new product ".$name." successfully."
+                "success" => "Created new product ".$name." successfully.",
+                "product" => array(
+                    'name' => $newProduct[0]["name"],
+                    'count' => $newProduct[0]["count"],
+                    'price' => $newProduct[0]["price"],
+                    'unit' => $newProduct[0]["unit"],
+                    'id' => $newProduct[0]["id"]
+                )
             );
         } catch (DBALException $e){
             $result = array(
