@@ -6,7 +6,7 @@ $(function () {
         let unit = $('#createNewProduct_unit').val()
         $.ajax({
             method: 'POST',
-            url: '/products/create',
+            url: '/productsCreate',
             data: {
                 productName: name,
                 productCount: count,

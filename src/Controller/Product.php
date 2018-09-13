@@ -25,6 +25,7 @@ class Product extends Controller
      * @Route("/products/{productId}", name="product_details")
      * @param $productId
      * @param \App\Service\Details\Product $product
+     * @return Response
      */
     public function getDetailsOfProduct($productId, \App\Service\Details\Product $product){
         $result = $product->execute($productId);
@@ -38,7 +39,7 @@ class Product extends Controller
      * @param Request $request
      * @param ChangeCountOfProduct $changeCountOfProduct
      * @return Response
-     * @Route("/products/changeCount")
+     * @Route("/productsChangeCount")
      */
     public function changeCountOfProduct(Request $request, ChangeCountOfProduct $changeCountOfProduct){
         $productId = $request->request->get('productId');
@@ -76,7 +77,7 @@ class Product extends Controller
     }
 
     /**
-     * @Route("/products/remove", name="remove_product", options={"expose"=TRUE})
+     * @Route("/productsRemove", name="remove_product", options={"expose"=TRUE})
      * @param Request $request
      * @param \App\Service\Edit\RemoveProduct $removeProduct
      * @return Response
@@ -96,7 +97,7 @@ class Product extends Controller
      * @param Request $request
      * @param CreateProduct $createProduct
      * @return Response
-     * @Route("/products/create", name="create_product")
+     * @Route("/productsCreate", name="create_product")
      */
     public function createNewProduct(Request $request, CreateProduct $createProduct){
         $productName = $request->request->get('productName');
