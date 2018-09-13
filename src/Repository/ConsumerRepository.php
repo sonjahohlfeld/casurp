@@ -21,7 +21,7 @@ class ConsumerRepository extends ServiceEntityRepository
 
     public function getConsumers(){
         $qb = $this->getEntityManager()->createQueryBuilder();
-        $qb->select('c.id', 'c.firstName','c.lastName','c.expenses', 'c.paid')
+        $qb->select('c.id', 'c.firstName','c.lastName','c.expenses', 'c.paid', 'c.email')
             ->from('App\Entity\Consumer','c');
         $query = $qb->getQuery();
         return $query->getResult();
@@ -29,10 +29,22 @@ class ConsumerRepository extends ServiceEntityRepository
 
     public function findByConsumerId($consumerId){
         $qb = $this->getEntityManager()->createQueryBuilder();
-        $qb->select('c.id', 'c.firstName', 'c.lastName', 'c.expenses', 'c.paid')
+        $qb->select('c.id', 'c.firstName', 'c.lastName', 'c.expenses', 'c.paid', 'c.email')
             ->from('App\Entity\Consumer', 'c')
             ->where('c.id = :consumerId')
             ->setParameter('consumerId', $consumerId);
+        $query = $qb->getQuery();
+        return $query->getResult();
+    }
+
+    public function findByConsumerName($firstName, $lastName){
+        $qb = $this->getEntityManager()->createQueryBuilder();
+        $qb->select('c.id', 'c.firstName', 'c.lastName', 'c.expenses', 'c.paid', 'c.email')
+            ->from('App\Entity\Consumer', 'c')
+            ->where('c.firstName = :firstName')
+            ->andWhere('c.lastName = :lastName')
+            ->setParameter('lastName', $lastName)
+            ->setParameter('firstName', $firstName);
         $query = $qb->getQuery();
         return $query->getResult();
     }
