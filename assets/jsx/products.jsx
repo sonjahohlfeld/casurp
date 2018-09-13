@@ -18,6 +18,14 @@ $(function () {
                     $('#resultMessage').append("<div class='alert alert-success alert-dismissable' role='alert'>" +
                         data.result.success+
                         "<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>")
+
+                     $('#productCards').append("<div class='col-lg-3' style='margin-bottom: 15px;'>" +
+                         "<a class='productDetails-link' href='/products/" + data.result.product.id +
+                         "' style='color: rgb(51, 51, 51);'>" +
+                         "<div class='product-card' style='width: 100%; height: 6em;'><div style='font-size: 18px;'>"+ data.result.product.name +
+                         "</div><div style='font-size: 18px; color: #3f903f'>"+data.result.product.count+" "+data.result.product.unit+
+                         "</div></div></div></a></div>")
+
                 } else {
                     $('#resultMessage').append("<div class='alert alert-danger alert-dismissable' role='alert'>" +
                         data.result.error+
