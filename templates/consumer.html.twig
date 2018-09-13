@@ -5,17 +5,15 @@
     <div id="page-wrapper" style="margin: 0px; border: none;">
     <h1 class="page-header">Consumers</h1>
         <div id="resultMessage"></div>
-        {#<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createNewProductModal" style="margin-bottom: 20px;">#}
-            {#Create new product#}
-        {#</button>#}
     {% block navigation %}{% endblock %}
         <div class="col-lg-3">
-            <div class="consumer-card" style="width: 100%; height: 6em;">
+            <div class="consumer-card" style="width: 100%; height: 6em;" data-toggle="modal" data-target="#createNewConsumerModal">
                 <div style="font-size: 18px; font-weight: 100;">
                     + Add new consumer
                 </div>
             </div>
         </div>
+        <div id="consumerCards">
     {% for c in consumer %}
         <div class="col-lg-3" style="margin-bottom: 15px;">
             <a class="consumerDetails-link" href="/consumers/{{ c.id }}" style="color: rgb(51, 51, 51);">
@@ -36,5 +34,39 @@
             </a>
         </div>
     {% endfor %}
+        </div>
+        <div class="modal fade" id="createNewConsumerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Create new Consumer</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row" style="margin-left: 20px; margin-bottom: 10px;">
+                            <label for="createNewConsumer_firstName">First Name: </label><input type="text" id="createNewConsumer_firstName" style="margin-left: 15px;">
+                        </div>
+                        <div class="row" style="margin-left: 20px; margin-bottom: 10px;">
+                            <label for="createNewConsumer_lastName">Last Name: </label><input type="text" id="createNewConsumer_lastName" style="margin-left: 15px;">
+                        </div>
+                        <div class="row" style="margin-left: 20px; margin-bottom: 10px;">
+                            <label for="createNewConsumer_email">Email: </label><input type="text" id="createNewConsumer_email" style="margin-left: 15px;">
+                        </div>
+                        <div class="row" style="margin-left: 20px; margin-bottom: 10px;">
+                            <label for="createNewConsumer_expenses">Expenses: </label><input type="text" id="createNewConsumer_expenses" style="margin-left: 15px;">
+                        </div>
+                        <div class="row" style="margin-left: 20px; margin-bottom: 10px;">
+                            <label for="createNewConsumer_paid">Paid: </label><input type="text" id="createNewConsumer_paid" style="margin-left: 15px;">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button id="createNewConsumerConfirm" type="button" data-dismiss="modal" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 </div>
 {% endblock %}

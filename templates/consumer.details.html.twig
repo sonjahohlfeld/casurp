@@ -8,6 +8,11 @@
         <div class="row">
             <h1>{{ consumer[0].name }}</h1>
         </div>
+        {% if consumer[0].email != "" %}
+        <div class="row">
+            <h4>{{ consumer[0].email }}</h4>
+        </div>
+        {% endif %}
         <div class="row">
             {% if consumer[0].credit >= 0 %}
                 <h1 style="color: #3f903f">{{ consumer[0].credit }} &euro;</h1>
