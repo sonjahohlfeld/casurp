@@ -20,9 +20,6 @@ class ProductRepository extends ServiceEntityRepository
         parent::__construct($registry, Product::class);
     }
 
-//    /**
-//     * @return Product[] Returns an array of Product objects
-//     */
     public function findByProductId($value){
         $qb = $this->getEntityManager()->createQueryBuilder();
         $qb->select('p.id', 'p.name','p.price', 'p.count','p.unit')
@@ -33,15 +30,14 @@ class ProductRepository extends ServiceEntityRepository
         return $query->getResult();
     }
 
-    /*
-    public function findOneBySomeField($value): ?Product
-    {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+    public function findByProductName($name){
+        $qb = $this->getEntityManager()->createQueryBuilder();
+        $qb->select('p.id', 'p.name','p.price', 'p.count','p.unit')
+            ->from('App\Entity\Product','p')
+            ->where('p.name = :name')
+            ->setParameter('name', $name);
+        $query = $qb->getQuery();
+        return $query->getResult();
     }
-    */
+
 }
