@@ -14,7 +14,7 @@
         </div>
         {% if consumer[0].email != "" %}
         <div class="row">
-            <h4>{{ consumer[0].email }} <i class="fa fa-edit changeConsumerEmail"></i></h4>
+            <h4>{{ consumer[0].email }} <i class="fa fa-edit changeConsumerEmail" data-toggle="modal" data-target="#editConsumerEmailModal"></i></h4>
         </div>
         {% endif %}
         <div class="row" id="consumerCardCount-{{ consumer[0].id }}">
@@ -63,6 +63,27 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         <button id="editConsumerNameConfirm" type="button" data-dismiss="modal" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="editConsumerEmailModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Edit Consumer Email</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row" style="margin-left: 20px; margin-bottom: 10px;">
+                            <label for="editConsumerEmail">Email: </label><input type="text" id="editConsumerEmail" style="margin-left: 15px;">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button id="editConsumerEmailConfirm" type="button" data-dismiss="modal" class="btn btn-primary">Save changes</button>
                     </div>
                 </div>
             </div>
