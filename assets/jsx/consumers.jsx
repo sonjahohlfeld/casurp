@@ -5,7 +5,6 @@ $(function () {
         let email = $('#createNewConsumer_email').val()
         let expenses = $('#createNewConsumer_expenses').val()
         let paid = $('#createNewConsumer_paid').val()
-        console.log(firstName)
         $.ajax({
             method: 'POST',
             url: '/consumersCreate',
@@ -39,6 +38,34 @@ $(function () {
                 } else {
                     $('#resultMessage').append("<div class='alert alert-danger alert-dismissable' role='alert'>" +
                         data.result.error+
+                        "<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>")
+                }
+            }
+        })
+    })
+
+    $(document).on('click', '#editConsumerNameConfirm', function(event){
+        let firstName = $('#editConsumerName_firstName').val()
+        let lastName = $('#editConsumerName_lastName').val()
+        let url = window.location.href.split("/");
+        let consumerId = url[url.length-1]
+        $.ajax({
+            method: 'POST',
+            url: '/consumersEditName',
+            data: {
+                consumerId: consumerId,
+                firstName: firstName,
+                lastName: lastName
+            },
+            success: function(data){
+                if('success' in data.result){
+                    $('#resultMessage').append("<div class='alert alert-success alert-dismissable' role='alert'>" +
+                        data.result.success+
+                        "<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>")
+                    $('#consumerName').html("<h1>"+data.result.name+" <i class='fa fa-edit changeConsumerName' data-toggle='modal' data-target='#editConsumerNameModal'></i></h1>")
+                } else {
+                    $('#resultMessage').append("<div class='alert alert-danger alert-dismissable' role='alert'>" +
+                        data.result.success+
                         "<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>")
                 }
             }
