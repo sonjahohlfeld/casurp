@@ -21,15 +21,23 @@
             {% endif %}
         </div>
         <div class="row">
-            <h4>Charge credit</h4>
+            <h4>Update credit</h4>
         </div>
         <div class="row">
-            <button id="{{ consumer[0].id }}" type="button" class="btn btn-default changeCredit" value="0.1">0.10 &euro;</button>
-            <button id="{{ consumer[0].id }}" type="button" class="btn btn-default changeCredit" value="0.5">0.50 &euro;</button>
-            <button id="{{ consumer[0].id }}" type="button" class="btn btn-default changeCredit" value="1.0">1.00 &euro;</button>
-            <button id="{{ consumer[0].id }}" type="button" class="btn btn-default changeCredit" value="5.0">5.00 &euro;</button>
-            <button id="{{ consumer[0].id }}" type="button" class="btn btn-default changeCredit" value="10.00">10.00 &euro;</button>
-            <button type="button" class="btn btn-default" >?</button>
+            <button id="{{ consumer[0].id }}" type="button" class="btn btn-success changeCredit" value="0.1">+0.10 &euro;</button>
+            <button id="{{ consumer[0].id }}" type="button" class="btn btn-success changeCredit" value="0.5">+0.50 &euro;</button>
+            <button id="{{ consumer[0].id }}" type="button" class="btn btn-success changeCredit" value="1.0">+1.00 &euro;</button>
+            <button id="{{ consumer[0].id }}" type="button" class="btn btn-success changeCredit" value="5.0">+5.00 &euro;</button>
+            <button id="{{ consumer[0].id }}" type="button" class="btn btn-success changeCredit" value="10.00">+10.00 &euro;</button>
+            <button type="button" class="btn btn-success" >?</button>
+        </div>
+        <div class="row" style="margin-top: 20px;">
+            <button id="{{ consumer[0].id }}" type="button" class="btn btn-danger changeCredit" value="-0.1">-0.10 &euro;</button>
+            <button id="{{ consumer[0].id }}" type="button" class="btn btn-danger changeCredit" value="-0.5">-0.50 &euro;</button>
+            <button id="{{ consumer[0].id }}" type="button" class="btn btn-danger changeCredit" value="-1.0">-1.00 &euro;</button>
+            <button id="{{ consumer[0].id }}" type="button" class="btn btn-danger changeCredit" value="-5.0">-5.00 &euro;</button>
+            <button id="{{ consumer[0].id }}" type="button" class="btn btn-danger changeCredit" value="-10.00">-10.00 &euro;</button>
+            <button type="button" class="btn btn-danger" >?</button>
         </div>
     </div>
 {% endblock %}

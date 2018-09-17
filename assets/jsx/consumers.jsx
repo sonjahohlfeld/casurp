@@ -100,9 +100,9 @@ $(function () {
 
     function updateCreditOfConsumer(consumerId, expenses, paid){
         if((paid - expenses) >= 0) {
-            $('#consumerCardCount-'+consumerId).html("<h1 style='color: #3f903f'>" + (paid - expenses) +"</h1>")
+            $('#consumerCardCount-'+consumerId).html("<h1 style='color: #3f903f'>" + (paid - expenses) +" &euro;</h1>")
         } else {
-            $('#consumerCardCount-' + consumerId).html("<h1 style='color: #c7254e'>" + (paid - expenses) + "</h1>")
+            $('#consumerCardCount-' + consumerId).html("<h1 style='color: #c7254e'>" + (paid - expenses) + " &euro;</h1>")
         }
     }
 })
