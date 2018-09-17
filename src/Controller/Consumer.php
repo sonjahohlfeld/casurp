@@ -10,6 +10,7 @@ namespace App\Controller;
 
 
 use App\Service\Edit\ChangeCreditOfConsumer;
+use App\Service\Edit\ChangeEmailOfConsumer;
 use App\Service\Edit\ChangeNameOfConsumer;
 use App\Service\Edit\CreateConsumer;
 use App\Service\Edit\RemoveConsumer;
@@ -139,7 +140,7 @@ class Consumer extends Controller
     }
 
     /**
-     * @Route("consumersEditName", name="consumer_change_name")
+     * @Route("consumersEditName", name="consumer_edit_email")
      * @param Request $request
      * @param ChangeNameOfConsumer $changeNameOfConsumer
      * @return Request
@@ -149,6 +150,24 @@ class Consumer extends Controller
         $firstName = $request->request->get('firstName');
         $lastName = $request->request->get('lastName');
         $result = $changeNameOfConsumer->execute($consumerId, $firstName, $lastName);
+        $response = new Response();
+        $response->setContent(json_encode(array(
+            'result' => $result
+        )));
+        $response->headers->set('Content-Type', 'application/json');
+        return $response;
+    }
+
+    /**
+     * @Route("consumersEditEmail", name="consumer_edit_email")
+     * @param Request $request
+     * @param ChangeEmailOfConsumer $changeEmailOfConsumer
+     * @return Response
+     */
+    public function changeEmailOfConsumer(Request $request, ChangeEmailOfConsumer $changeEmailOfConsumer){
+        $consumerId = $request->request->get('consumerId');
+        $email = $request->request->get('email');
+        $result = $changeEmailOfConsumer->execute($consumerId, $email);
         $response = new Response();
         $response->setContent(json_encode(array(
             'result' => $result

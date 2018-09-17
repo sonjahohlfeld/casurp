@@ -72,6 +72,32 @@ $(function () {
         })
     })
 
+    $(document).on('click', '#editConsumerEmailConfirm', function(event){
+        let email = $('#editConsumerEmail').val()
+        let url = window.location.href.split("/");
+        let consumerId = url[url.length-1]
+        $.ajax({
+            method: 'POST',
+            url: '/consumersEditEmail',
+            data: {
+                consumerId: consumerId,
+                email: email
+            },
+            success: function(data){
+                if('success' in data.result){
+                    $('#resultMessage').append("<div class='alert alert-success alert-dismissable' role='alert'>" +
+                        data.result.success+
+                        "<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>")
+                    $('#consumerEmail').html("<h4>"+data.result.email+" <i class='fa fa-edit changeConsumerEmail' data-toggle='modal' data-target='#editConsumerEmailModal'></i></h4>")
+                } else {
+                    $('#resultMessage').append("<div class='alert alert-danger alert-dismissable' role='alert'>" +
+                        data.result.success+
+                        "<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>")
+                }
+            }
+        })
+    })
+
     $('.removeConsumerButton').on('click', function () {
         let consumerId = this.attributes.getNamedItem("id").value
         $.ajax({
