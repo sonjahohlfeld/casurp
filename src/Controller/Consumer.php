@@ -10,6 +10,7 @@ namespace App\Controller;
 
 
 use App\Service\Edit\ChangeCreditOfConsumer;
+use App\Service\Edit\ChangeNameOfConsumer;
 use App\Service\Edit\CreateConsumer;
 use App\Service\Edit\RemoveConsumer;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -129,6 +130,25 @@ class Consumer extends Controller
         $consumerId = $request->request->get('consumerId');
         $value = $request->request->get('value');
         $result = $changeCreditOfConsumer->execute($consumerId, $value);
+        $response = new Response();
+        $response->setContent(json_encode(array(
+            'result' => $result
+        )));
+        $response->headers->set('Content-Type', 'application/json');
+        return $response;
+    }
+
+    /**
+     * @Route("consumersEditName", name="consumer_change_name")
+     * @param Request $request
+     * @param ChangeNameOfConsumer $changeNameOfConsumer
+     * @return Request
+     */
+    public function changeNameOfConsumer(Request $request, ChangeNameOfConsumer $changeNameOfConsumer){
+        $consumerId = $request->request->get('consumerId');
+        $firstName = $request->request->get('firstName');
+        $lastName = $request->request->get('lastName');
+        $result = $changeNameOfConsumer->execute($consumerId, $firstName, $lastName);
         $response = new Response();
         $response->setContent(json_encode(array(
             'result' => $result
