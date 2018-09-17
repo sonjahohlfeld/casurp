@@ -4,9 +4,13 @@
 
     {% block navigation %}{% endblock %}
     <div id="page-wrapper" style="margin: 0px; border: none;">
-        <div id="resultMessage"></div>
-        <div class="row">
-            <h1>{{ consumer[0].name }} <i class="fa fa-edit changeConsumerName"></i></h1>
+        <div class="row" style="margin-top: 30px;">
+            <div class="col-lg-3">
+                <div id="resultMessage"></div>
+            </div>
+        </div>
+        <div class="row" id="consumerName">
+            <h1>{{ consumer[0].name }} <i class="fa fa-edit changeConsumerName" data-toggle="modal" data-target="#editConsumerNameModal"></i></h1>
         </div>
         {% if consumer[0].email != "" %}
         <div class="row">
@@ -38,6 +42,30 @@
             <button id="{{ consumer[0].id }}" type="button" class="btn btn-danger changeCredit" value="-5.0">-5.00 &euro;</button>
             <button id="{{ consumer[0].id }}" type="button" class="btn btn-danger changeCredit" value="-10.00">-10.00 &euro;</button>
             <button type="button" class="btn btn-danger" >?</button>
+        </div>
+        <div class="modal fade" id="editConsumerNameModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Edit Consumer Name</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row" style="margin-left: 20px; margin-bottom: 10px;">
+                            <label for="editConsumerName_firstName">First Name: </label><input type="text" id="editConsumerName_firstName" style="margin-left: 15px;">
+                        </div>
+                        <div class="row" style="margin-left: 20px; margin-bottom: 10px;">
+                            <label for="editConsumerName_lastName">Last Name: </label><input type="text" id="editConsumerName_lastName" style="margin-left: 15px;">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button id="editConsumerNameConfirm" type="button" data-dismiss="modal" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 {% endblock %}
