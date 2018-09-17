@@ -6,11 +6,11 @@
     <div id="page-wrapper" style="margin: 0px; border: none;">
         <div id="resultMessage"></div>
         <div class="row">
-            <h1>{{ consumer[0].name }}</h1>
+            <h1>{{ consumer[0].name }} <i class="fa fa-edit changeConsumerName"></i></h1>
         </div>
         {% if consumer[0].email != "" %}
         <div class="row">
-            <h4>{{ consumer[0].email }}</h4>
+            <h4>{{ consumer[0].email }} <i class="fa fa-edit changeConsumerEmail"></i></h4>
         </div>
         {% endif %}
         <div class="row" id="consumerCardCount-{{ consumer[0].id }}">
