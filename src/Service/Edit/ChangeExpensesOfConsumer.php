@@ -8,6 +8,8 @@
 
 namespace App\Service\Edit;
 
+use App\Entity\Cash;
+
 class ChangeExpensesOfConsumer
 {
     private $em;
@@ -31,6 +33,12 @@ class ChangeExpensesOfConsumer
             $result['success'] = "Successfully update consumer credit";
             $result['expenses'] = $c->getExpenses();
             $result['paid'] = $c->getPaid();
+            //update cash position
+            $cash = $this->em->getRepository(Cash::class)->findAll();
+            $oldPosition = $cash[0]->getPosition();
+            $cash[0]->setPosition($oldPosition - $value);
+            $this->em->persist($cash[0]);
+            $this->em->flush();
         }
         return $result;
     }
