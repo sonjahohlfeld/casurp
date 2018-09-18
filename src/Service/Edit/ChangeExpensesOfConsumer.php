@@ -8,7 +8,7 @@
 
 namespace App\Service\Edit;
 
-class ChangeCreditOfConsumer
+class ChangeExpensesOfConsumer
 {
     private $em;
 
@@ -24,8 +24,8 @@ class ChangeCreditOfConsumer
         if($c === null){
             $result['error'] = "There exist no consumer with the id ".$consumerId;
         } else {
-            $oldValue = $c->getPaid();
-            $c->setPaid($oldValue + $value);
+            $oldValue = $c->getExpenses();
+            $c->setExpenses($oldValue - $value);
             $this->em->persist($c);
             $this->em->flush();
             $result['success'] = "Successfully update consumer credit";

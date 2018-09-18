@@ -122,25 +122,18 @@ $(function () {
         })
     })
 
-    $('.changeCredit').on('click', function(){
+    $('.changeExpenses').on('click', function(){
         let consumerId = this.attributes.getNamedItem("id").value
         let value = this.attributes.getNamedItem("value").value
-        changeCreditofConsumer(consumerId, value)
-    })
-
-    function changeCreditofConsumer(consumerId, value){
         $.ajax({
             method: 'POST',
-            url: '/consumersChangeCredit',
+            url: "/consumersChangeExpenses",
             data: {
                 consumerId: consumerId,
                 value: value
             },
             success: function(data){
                 if('success' in data.result){
-                    // $('#resultMessage').append("<div class='alert alert-success alert-dismissable' role='alert'>" +
-                    //     data.result.success+
-                    //     "<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>")
                     updateCreditOfConsumer(consumerId, data.result.expenses, data.result.paid)
                 } else {
                     $('#resultMessage').append("<div class='alert alert-danger alert-dismissable' role='alert'>" +
@@ -149,13 +142,36 @@ $(function () {
                 }
             }
         })
-    }
+    })
+
+    $('.changePaid').on('click', function(){
+        let consumerId = this.attributes.getNamedItem("id").value
+        let value = this.attributes.getNamedItem("value").value
+        $.ajax({
+            method: 'POST',
+            url: '/consumersChangePaid',
+            data: {
+                consumerId: consumerId,
+                value: value
+            },
+            success: function(data){
+                if('success' in data.result){
+                    updateCreditOfConsumer(consumerId, data.result.expenses, data.result.paid)
+                } else {
+                    $('#resultMessage').append("<div class='alert alert-danger alert-dismissable' role='alert'>" +
+                        data.result.success+
+                        "<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>")
+                }
+            }
+        })
+    })
+
 
     function updateCreditOfConsumer(consumerId, expenses, paid){
-        if((paid - expenses) >= 0) {
-            $('#consumerCardCount-'+consumerId).html("<h1 style='color: #3f903f'>" + (paid - expenses) +" &euro;</h1>")
+        if((expenses + paid) >= 0) {
+            $('#consumerCardCount-'+consumerId).html("<h1 style='color: #3f903f'>" + (expenses + paid).toFixed(2) +" &euro;</h1>")
         } else {
-            $('#consumerCardCount-' + consumerId).html("<h1 style='color: #c7254e'>" + (paid - expenses) + " &euro;</h1>")
+            $('#consumerCardCount-' + consumerId).html("<h1 style='color: #c7254e'>" + (expenses + paid).toFixed(2) + " &euro;</h1>")
         }
     }
 })

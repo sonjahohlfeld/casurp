@@ -70,12 +70,12 @@ class Consumer
         return $this;
     }
 
-    public function getExpenses(): ?int
+    public function getExpenses(): ?float
     {
         return $this->expenses;
     }
 
-    public function setExpenses(int $expenses): self
+    public function setExpenses(float $expenses): self
     {
         $this->expenses = $expenses;
 

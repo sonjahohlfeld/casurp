@@ -11,7 +11,9 @@ namespace App\Controller;
 
 use App\Service\Edit\ChangeCreditOfConsumer;
 use App\Service\Edit\ChangeEmailOfConsumer;
+use App\Service\Edit\ChangeExpensesOfConsumer;
 use App\Service\Edit\ChangeNameOfConsumer;
+use App\Service\Edit\ChangePaidOfConsumer;
 use App\Service\Edit\CreateConsumer;
 use App\Service\Edit\RemoveConsumer;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -123,14 +125,32 @@ class Consumer extends Controller
 
     /**
      * @param Request $request
-     * @param ChangeCreditOfConsumer $changeCreditOfConsumer
+     * @param ChangeExpensesOfConsumer $changeExpensesOfConsumer
      * @return Response
-     * @Route("/consumersChangeCredit", name="consumer_change_credit")
+     * @Route("/consumersChangeExpenses", name="consumer_change_expenses")
      */
-    public function changeCountOfProduct(Request $request, ChangeCreditOfConsumer $changeCreditOfConsumer){
+    public function changeExpensesOfConsumer(Request $request, ChangeExpensesOfConsumer $changeExpensesOfConsumer){
         $consumerId = $request->request->get('consumerId');
         $value = $request->request->get('value');
-        $result = $changeCreditOfConsumer->execute($consumerId, $value);
+        $result = $changeExpensesOfConsumer->execute($consumerId, $value);
+        $response = new Response();
+        $response->setContent(json_encode(array(
+            'result' => $result
+        )));
+        $response->headers->set('Content-Type', 'application/json');
+        return $response;
+    }
+
+    /**
+     * @param Request $request
+     * @param ChangePaidOfConsumer $changePaidOfConsumer
+     * @return Response
+     * @Route("/consumersChangePaid", name="consumer_change_paid")
+     */
+    public function changePaidOfConsumer(Request $request, ChangePaidOfConsumer $changePaidOfConsumer){
+        $consumerId = $request->request->get('consumerId');
+        $value = $request->request->get('value');
+        $result = $changePaidOfConsumer->execute($consumerId, $value);
         $response = new Response();
         $response->setContent(json_encode(array(
             'result' => $result
