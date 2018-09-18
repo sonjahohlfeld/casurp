@@ -13,9 +13,13 @@
             <h1>{{ consumer[0].name }} <i class="fa fa-edit changeConsumerName" data-toggle="modal" data-target="#editConsumerNameModal"></i></h1>
         </div>
         {% if consumer[0].email != "" %}
-        <div class="row" id="consumerEmail">
-            <h4>{{ consumer[0].email }} <i class="fa fa-edit changeConsumerEmail" data-toggle="modal" data-target="#editConsumerEmailModal"></i></h4>
-        </div>
+            <div class="row" id="consumerEmail">
+                <h4>{{ consumer[0].email }} <i class="fa fa-edit changeConsumerEmail" data-toggle="modal" data-target="#editConsumerEmailModal"></i></h4>
+            </div>
+        {% else %}
+            <div class="row" id="consumerEmail">
+                <h4>Add email address <i class="fa fa-edit changeConsumerEmail" data-toggle="modal" data-target="#editConsumerEmailModal"></i></h4>
+            </div>
         {% endif %}
         <div class="row" id="consumerCardCount-{{ consumer[0].id }}">
             {% if consumer[0].credit >= 0 %}
