@@ -16,6 +16,7 @@ use App\Service\Edit\ChangeNameOfConsumer;
 use App\Service\Edit\ChangePaidOfConsumer;
 use App\Service\Edit\CreateConsumer;
 use App\Service\Edit\RemoveConsumer;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -40,6 +41,7 @@ class Consumer extends Controller
 
     /**
      * @Route("/consumers", name="consumers")
+     * @Security("is_granted('ROLE_ADMIN')")
      */
     public function displayConsumers(\App\Service\Listing\Consumer $consumer){
         $result = $this->generateData($consumer->execute());
@@ -72,6 +74,7 @@ class Consumer extends Controller
 
     /**
      * @Route("/consumers/{consumerId}", name="consumer_details")
+     * @Security("is_granted('ROLE_ADMIN')")
      * @param $consumerId
      * @param \App\Service\Details\Consumer $consumer
      * @return Response
@@ -86,6 +89,7 @@ class Consumer extends Controller
 
     /**
      * @Route("/consumersCreate", name="consumer_create")
+     * @Security("is_granted('ROLE_ADMIN')")
      * @param Request $request
      * @param CreateConsumer $createConsumer
      * @return Response
@@ -108,6 +112,7 @@ class Consumer extends Controller
 
     /**
      * @Route("/consumersRemove", name="consumer_remove")
+     * @Security("is_granted('ROLE_ADMIN')")
      * @param Request $request
      * @param RemoveConsumer $removeCustomer
      * @return Response
@@ -128,6 +133,7 @@ class Consumer extends Controller
      * @param ChangeExpensesOfConsumer $changeExpensesOfConsumer
      * @return Response
      * @Route("/consumersChangeExpenses", name="consumer_change_expenses")
+     * @Security("is_granted('ROLE_ADMIN')")
      */
     public function changeExpensesOfConsumer(Request $request, ChangeExpensesOfConsumer $changeExpensesOfConsumer){
         $consumerId = $request->request->get('consumerId');
@@ -146,6 +152,7 @@ class Consumer extends Controller
      * @param ChangePaidOfConsumer $changePaidOfConsumer
      * @return Response
      * @Route("/consumersChangePaid", name="consumer_change_paid")
+     * @Security("is_granted('ROLE_ADMIN')")
      */
     public function changePaidOfConsumer(Request $request, ChangePaidOfConsumer $changePaidOfConsumer){
         $consumerId = $request->request->get('consumerId');
@@ -161,6 +168,7 @@ class Consumer extends Controller
 
     /**
      * @Route("consumersEditName", name="consumer_edit_email")
+     * @Security("is_granted('ROLE_ADMIN')")
      * @param Request $request
      * @param ChangeNameOfConsumer $changeNameOfConsumer
      * @return Request
@@ -180,6 +188,7 @@ class Consumer extends Controller
 
     /**
      * @Route("consumersEditEmail", name="consumer_edit_email")
+     * @Security("is_granted('ROLE_ADMIN')")
      * @param Request $request
      * @param ChangeEmailOfConsumer $changeEmailOfConsumer
      * @return Response

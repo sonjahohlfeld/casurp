@@ -28,6 +28,7 @@ class Product extends Controller
      * @param $productId
      * @param \App\Service\Details\Product $product
      * @return Response
+     * @Security("is_granted('ROLE_ADMIN')")
      */
     public function getDetailsOfProduct($productId, \App\Service\Details\Product $product){
         $result = $product->execute($productId);
@@ -42,6 +43,7 @@ class Product extends Controller
      * @param ChangeCountOfProduct $changeCountOfProduct
      * @return Response
      * @Route("/productsChangeCount")
+     * @Security("is_granted('ROLE_ADMIN')")
      */
     public function changeCountOfProduct(Request $request, ChangeCountOfProduct $changeCountOfProduct){
         $productId = $request->request->get('productId');
@@ -79,6 +81,7 @@ class Product extends Controller
 
     /**
      * @Route("/productsRemove", name="remove_product", options={"expose"=TRUE})
+     * @Security("is_granted('ROLE_ADMIN')")
      * @param Request $request
      * @param \App\Service\Edit\RemoveProduct $removeProduct
      * @return Response
@@ -99,6 +102,7 @@ class Product extends Controller
      * @param CreateProduct $createProduct
      * @return Response
      * @Route("/productsCreate", name="create_product")
+     * @Security("is_granted('ROLE_ADMIN')")
      */
     public function createNewProduct(Request $request, CreateProduct $createProduct){
         $productName = $request->request->get('productName');
