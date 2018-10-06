@@ -18,14 +18,10 @@ class Startpage extends Controller
 {
 
     /**
-     * @Route("/", name="main")
+     * @Route("/", name="index")
      */
-    public function mainAction(Overview $overview){
-        $data = $overview->execute();
-        $twigParameter = array(
-            "data" => $data
-        );
-        return $this->render('/main.html.twig', $twigParameter);
+    public function indexAction(){
+        return $this->redirectToRoute('fos_user_security_login');
     }
 
 }
