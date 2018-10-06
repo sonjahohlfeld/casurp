@@ -1,6 +1,7 @@
 {% extends 'navigation.html.twig' %}
 
 {% block content %}
+    {% if app.user and is_granted('ROLE_ADMIN') %}
     <div id="page-wrapper" style="margin: 0px; border: none;">
         <div class="row">
             <div class="col-lg-12">
@@ -47,5 +48,11 @@
             </div>
         </div>
     </div>
-</div>
+    {% elseif is_granted('ROLE_USER') %}
+        <div>
+            Hello consumer
+        </div>
+    {% else %}
+        <div>Please log in</div>
+    {% endif %}
 {% endblock %}

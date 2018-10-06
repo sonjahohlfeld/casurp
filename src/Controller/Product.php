@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Service\Edit\ChangeCountOfProduct;
 use App\Service\Edit\CreateProduct;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -13,6 +14,7 @@ class Product extends Controller
 {
     /**
      * @Route("/products", name="products")
+     * @Security("is_granted('ROLE_ADMIN')")
      */
     public function displayProducts(\App\Service\Listing\Product $product){
         $result = $product->execute();

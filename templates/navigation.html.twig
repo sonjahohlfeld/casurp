@@ -21,8 +21,10 @@
         </div>
 
         <ul class="nav navbar-nav navbar-top-links navbar-right">
+            {% if app.user and is_granted('ROLE_ADMIN') %}
             <li><a href="{{ path('consumers') }}">Consumers</a></li>
             <li><a href="{{ path('products') }}">Products</a></li>
+            {% endif %}
             <li class="dropdown">
                 <a class="dropdown-toggle navbar-custom navbar-icon-custom" data-toggle="dropdown" href="#" style="background-color: transparent;">
                     <i class="fa fa-user fa-fw"></i>
