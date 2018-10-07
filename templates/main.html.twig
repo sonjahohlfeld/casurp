@@ -49,9 +49,20 @@
         </div>
     </div>
     {% elseif is_granted('ROLE_USER') %}
-        <div>
-            Hello consumer
-        </div>
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link active" href="#"><img src="../assets/img/002-coffee-cup.png"></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#"></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link disabled" href="#">Disabled</a>
+            </li>
+        </ul>
     {% else %}
         <div>Please log in</div>
     {% endif %}
