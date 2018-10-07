@@ -28,13 +28,13 @@
             <li class="dropdown">
                 <a class="dropdown-toggle navbar-custom navbar-icon-custom" data-toggle="dropdown" href="#" style="background-color: transparent;">
                     <i class="fa fa-user fa-fw"></i>
-                    Testi Testmann
+                    {{ app.user.username }}
                     <i class="fa fa-caret-down"></i>
                 </a>
                 <ul class="dropdown-menu dropdown-user">
-                    <li><a>Signed in as<br><b>Testi Testmann</b></a></li>
+                    <li><a>Signed in as<br><b>{{ app.user.username }}</b></a></li>
                     <li><hr></li>
-                    <li><a href="#"><i class="fa fa-sign-out fa-fw"></i> Logout</a></li>
+                    <li><a href="{{ path('fos_user_security_logout') }}"><i class="fa fa-sign-out fa-fw"></i> Logout</a></li>
                 </ul>
             </li>
         </ul>
