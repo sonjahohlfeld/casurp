@@ -49,17 +49,30 @@
         </div>
     </div>
     {% elseif is_granted('ROLE_USER') %}
-        <ul class="nav nav-tabs">
-            <li class="nav-item">
-                <a class="nav-link active" href="#"><img src="{{ asset('build/images/001-coke.png') }}" height="200" alt="Drinks" style="margin: 20px;"></a>
+        <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item active">
+                <a class="nav-link active" id="coffee-tab" data-toggle="tab" href="#coffee" role="tab" aria-controls="coffee" aria-selected="true">
+                    <img src="{{ asset('build/images/002-coffee-cup.png') }}" height="200" alt="Coffee" style="margin: 20px;">
+                </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#"><img src="{{ asset('build/images/002-coffee-cup.png') }}" height="200" alt="Coffee" style="margin: 20px;"></a>
+                <a class="nav-link active" id="drinks-tab" data-toggle="tab" href="#drinks" role="tab" aria-controls="drinks" aria-selected="true">
+                    <img src="{{ asset('build/images/001-coke.png') }}" height="200" alt="Drinks" style="margin: 20px;">
+                </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#"><img src="{{ asset('build/images/003-chocolate-bar.png') }}" height="200" alt="Snacks" style="margin: 20px;"></a>
+                <a class="nav-link active" id="snacks-tab" data-toggle="tab" href="#snacks" role="tab" aria-controls="snacks" aria-selected="true">
+                    <img src="{{ asset('build/images/003-chocolate-bar.png') }}" height="200" alt="Snacks" style="margin: 20px;">
+                </a>
             </li>
         </ul>
+        <div class="tab-content" id="products">
+            <div class="tab-pane active" id="coffee" role="tabpanel" aria-labelledby="coffee">
+
+            </div>
+            <div class="tab-pane" id="drinks" role="tabpanel" aria-labelledby="drinks">drinks</div>
+            <div class="tab-pane" id="snacks" role="tabpanel" aria-labelledby="snacks">snacks</div>
+        </div>
     {% else %}
         <div>Please log in</div>
     {% endif %}
