@@ -65,6 +65,5 @@ $('document').ready(function(){
         .fail(function(){
             $('#coffeelist-table').append("<div class='alert alert-success alert-dismissable' role='alert'>Could not load data from database.<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>")
         })
-
 })
 
