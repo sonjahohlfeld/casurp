@@ -117,4 +117,26 @@ class Product extends Controller
         $response->headers->set('Content-Type', 'application/json');
         return $response;
     }
+
+    /**
+     * @param Request $request
+     * @param ChangeExpensesOfConsumer $changeExpensesOfConsumer
+     * @param ChangeCountOfProduct $changeCountOfProduct
+     * @return Response
+     * @Route("/buyProduct", name="buy_product")
+     */
+    public function buyProduct(Request $request, ChangeExpensesOfConsumer $changeExpensesOfConsumer, ChangeCountOfProduct $changeCountOfProduct){
+        $productId = $request->request->get('productId');
+        $count = $request->request->get('count');
+        $consumerId = $request->request->get('consumerId');
+        $value = $request->request->get('value');
+        $result = $changeExpensesOfConsumer->execute($consumerId, $value);
+        $result = array_merge($result, $changeCountOfProduct->execute($productId, $count));
+        $response = new Response();
+        $response->setContent(json_encode(array(
+            'result' => $result
+        )));
+        $response->headers->set('Content-Type', 'application/json');
+        return $response;
+    }
 }
