@@ -58,7 +58,9 @@
             <div class="row">
                 {% for p in product %}
                     <label class="radio-inline">
-                        <input type="radio" name="productGroup" value="{{ p.name }}">
+                        <input class="radio-product-name" type="radio" name="productGroup" value="{{ p.name }}">
+                        <input type="hidden" value="{{ p.id }}" id="buyProductId">
+                        <input type="hidden" value="{{ p.price }}" id="buyProductPrice">
                         <h2>{{  p.name }}</h2>
                         {#<img src="{{ asset('build/images/002-coffee-cup.png') }}" height="200" alt="Coffee" style="margin: 20px;">#}
                     </label>
