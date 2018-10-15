@@ -40,4 +40,12 @@ class ProductRepository extends ServiceEntityRepository
         return $query->getResult();
     }
 
+    public function getProducts(){
+        $qb = $this->getEntityManager()->createQueryBuilder();
+        $qb->select('p.id', 'p.name', 'p.price', 'p.count', 'p.unit', 'p.category')
+            ->from('App\Entity\Product', 'p');
+        $query = $qb->getQuery();
+        return $query->getResult();
+    }
+
 }

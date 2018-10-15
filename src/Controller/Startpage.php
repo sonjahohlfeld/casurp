@@ -9,8 +9,7 @@
 namespace App\Controller;
 use App\Service\Listing\Overview;
 use App\Service\Listing\Consumer;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
+use App\Service\Listing\Product;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
@@ -27,12 +26,14 @@ class Startpage extends Controller
     /**
      * @Route("/main", name="main")
      */
-    public function mainAction(Overview $overview, Consumer $consumer){
+    public function mainAction(Overview $overview, Consumer $consumer, Product $product){
         $data = $overview->execute();
         $consumer = $consumer->execute();
+        $product = $product->execute();
         $twigParameter = array(
             'data' => $data,
-            'consumer' => $consumer
+            'consumer' => $consumer,
+            'product' => $product
         );
         return $this->render('main.html.twig', $twigParameter);
     }

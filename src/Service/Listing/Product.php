@@ -19,6 +19,6 @@ class Product {
     }
 
     public function execute(){
-        return $this->em->getRepository(\App\Entity\Product::class)->findAll();
+        return $this->em->getRepository(\App\Entity\Product::class)->getProducts();
     }
 }
