@@ -49,22 +49,37 @@
         </div>
     </div>
     {% elseif is_granted('ROLE_USER') %}
-        <div class="row">
-            <img class="category-image" id="coffee" src="{{ asset('build/images/002-coffee-cup.png') }}" height="200" alt="Coffee" style="margin: 20px;">
-            <img class="category-image" id="drink" src="{{ asset('build/images/001-coke.png') }}" height="200" alt="Drinks" style="margin: 20px;">
-            <img class="category-image" id="snack" src="{{ asset('build/images/003-chocolate-bar.png') }}" height="200" alt="Snacks" style="margin: 20px;">
-        </div>
+        <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item active">
+                <a class="nav-link active" id="coffee-tab" data-toggle="tab" href="#coffee" role="tab" aria-controls="coffee" aria-selected="true">
+                    <img src="{{ asset('build/images/002-coffee-cup.png') }}" height="200" alt="Coffee" style="margin: 20px;">
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" id="drinks-tab" data-toggle="tab" href="#drinks" role="tab" aria-controls="drinks" aria-selected="true">
+                    <img src="{{ asset('build/images/001-coke.png') }}" height="200" alt="Drinks" style="margin: 20px;">
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" id="snacks-tab" data-toggle="tab" href="#snacks" role="tab" aria-controls="snacks" aria-selected="true">
+                    <img src="{{ asset('build/images/003-chocolate-bar.png') }}" height="200" alt="Snacks" style="margin: 20px;">
+                </a>
+            </li>
+        </ul>
         <div class="tab-content" id="products">
             <div class="tab-pane active" id="coffee" role="tabpanel" aria-labelledby="coffee">
+                <div class="col-lg-12">
+                    <h2 class="page-header">Coffee</h2>
+                </div>
                 {% for c in consumer %}
-                    <div class="col-lg-3" style="margin-top: 20px;" id="consumerCard-{{ c.id }}">
-                        <div class="consumer-card" style="width: 100%; height: 8em;">
+                    <div class="col-lg-3" style="margin-top: 20px;" id="consumerCard-{{ c.id }}" data-toggle="modal" data-target="#buyCoffeeModal">
+                        <div class="consumer-card" style="width: 100%; height: auto">
                             <div class="row">
-                                <div class="col-lg-4">
+                                <div class="col-lg-3">
                                     <img src="https://api.adorable.io/avatars/200/{{ c.lastName }}{{ c.firstName }}.png" alt="bla" class="img-thumbnail">
                                 </div>
                                 <div class="col-lg-8">
-                                    <a class="consumerDetails-link" href="/consumers/{{ c.id }}" style="color: rgb(51, 51, 51);">
+                                    <a class="consumerDetails-link" href="#" style="color: rgb(51, 51, 51);">
                                         <div style="font-size: 18px;">
                                             {{ c.firstName }} {{ c.lastName }}
                                         </div>
@@ -84,8 +99,91 @@
                     </div>
                 {% endfor %}
             </div>
-            <div class="tab-pane" id="drinks" role="tabpanel" aria-labelledby="drinks">drinks</div>
-            <div class="tab-pane" id="snacks" role="tabpanel" aria-labelledby="snacks">snacks</div>
+            <div class="tab-pane" id="drinks" role="tabpanel" aria-labelledby="drinks">
+                <div class="col-lg-12">
+                    <h2 class="page-header">Drinks</h2>
+                </div>
+                {% for c in consumer %}
+                    <div class="col-lg-3" style="margin-top: 20px;" id="consumerCard-{{ c.id }}">
+                        <div class="consumer-card" style="width: 100%; height: auto">
+                            <div class="row">
+                                <div class="col-lg-3">
+                                    <img src="https://api.adorable.io/avatars/200/{{ c.lastName }}{{ c.firstName }}.png" alt="bla" class="img-thumbnail">
+                                </div>
+                                <div class="col-lg-8">
+                                    <a class="consumerDetails-link" href="#" style="color: rgb(51, 51, 51);">
+                                        <div style="font-size: 18px;">
+                                            {{ c.firstName }} {{ c.lastName }}
+                                        </div>
+                                        {%  if (c.paid - c.expenses) >= 0 %}
+                                            <div style="font-size: 18px; color: #3f903f">
+                                                {{ c.paid - c.expenses }} &euro;
+                                            </div>
+                                        {% else %}
+                                            <div style="font-size: 18px; color: #c7254e">
+                                                {{ c.paid - c.expenses }} &euro;
+                                            </div>
+                                        {% endif %}
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="tab-pane" id="snacks" role="tabpanel" aria-labelledby="snacks">
+                <div class="col-lg-12">
+                    <h2 class="page-header">Snacks</h2>
+                    <input type="number" value="50" min="0" max="100" step="10"/>
+                </div>
+                {% for c in consumer %}
+                    <div class="col-lg-3" style="margin-top: 20px;" id="consumerCard-{{ c.id }}">
+                        <div class="consumer-card" style="width: 100%; height: auto">
+                            <div class="row">
+                                <div class="col-lg-3">
+                                    <img src="https://api.adorable.io/avatars/200/{{ c.lastName }}{{ c.firstName }}.png" alt="bla" class="img-thumbnail">
+                                </div>
+                                <div class="col-lg-8">
+                                    <a class="consumerDetails-link" href="#" style="color: rgb(51, 51, 51);">
+                                        <div style="font-size: 18px;">
+                                            {{ c.firstName }} {{ c.lastName }}
+                                        </div>
+                                        {%  if (c.paid - c.expenses) >= 0 %}
+                                            <div style="font-size: 18px; color: #3f903f">
+                                                {{ c.paid - c.expenses }} &euro;
+                                            </div>
+                                        {% else %}
+                                            <div style="font-size: 18px; color: #c7254e">
+                                                {{ c.paid - c.expenses }} &euro;
+                                            </div>
+                                        {% endif %}
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="modal fade" id="buyCoffeeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="modal-title" id="exampleModalLabel">Buy Coffee</h2>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="number" value="50" min="0" max="100" step="10"/>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button id="buyCoffee" type="button" data-dismiss="modal" class="btn btn-primary">Buy</button>
+                    </div>
+                </div>
+            </div>
         </div>
     {% else %}
         <div>Please log in</div>
