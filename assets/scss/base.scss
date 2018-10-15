@@ -86,14 +86,14 @@ $fa-font-path: "~font-awesome/fonts";
   box-shadow: 0 0 11px rgba(33,33,33,.2);
 }
 
-.radio-inline > input{ /* HIDE RADIO */
+.radio-inline > .radio-product-name{ /* HIDE RADIO */
   visibility: hidden; /* Makes input not-clickable */
   position: absolute; /* Remove input from document flow */
 }
-.radio-inline> input + h2{ /* IMAGE STYLES */
+.radio-inline> .radio-product-name + h2{ /* IMAGE STYLES */
   cursor:pointer;
   border:2px solid transparent;
 }
-.radio-inline > input:checked + h2{ /* (RADIO CHECKED) IMAGE STYLES */
+.radio-inline > .radio-product-name:checked + h2{ /* (RADIO CHECKED) IMAGE STYLES */
   background-color: #C9C9C9;
 }
