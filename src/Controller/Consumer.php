@@ -133,7 +133,6 @@ class Consumer extends Controller
      * @param ChangeExpensesOfConsumer $changeExpensesOfConsumer
      * @return Response
      * @Route("/consumersChangeExpenses", name="consumer_change_expenses")
-     * @Security("is_granted('ROLE_ADMIN')")
      */
     public function changeExpensesOfConsumer(Request $request, ChangeExpensesOfConsumer $changeExpensesOfConsumer){
         $consumerId = $request->request->get('consumerId');

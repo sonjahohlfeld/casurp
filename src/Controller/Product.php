@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Service\Edit\ChangeCountOfProduct;
+use App\Service\Edit\ChangeExpensesOfConsumer;
 use App\Service\Edit\CreateProduct;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -43,7 +44,6 @@ class Product extends Controller
      * @param ChangeCountOfProduct $changeCountOfProduct
      * @return Response
      * @Route("/productsChangeCount")
-     * @Security("is_granted('ROLE_ADMIN')")
      */
     public function changeCountOfProduct(Request $request, ChangeCountOfProduct $changeCountOfProduct){
         $productId = $request->request->get('productId');
